@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.aweb.crud_no_db.dto.ProductDTO;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/products")
@@ -27,4 +30,11 @@ public class ProductController {
     public ProductDTO getProductById (@PathVariable Long id){
         return products.get(id);
     }
+
+    @PostMapping
+    public ProductDTO createProduct(@RequestBody ProductDTO product){
+        product.setId(nextId++);
+        products.put(product.getId(),product);
+        return product;
+    }    
 }
