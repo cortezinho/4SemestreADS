@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-CrudNoDbApplication<crud-no-db>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.com.aweb.crud_no_db.CrudNoDbApplication",
+      "projectName": "crud-no-db",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
