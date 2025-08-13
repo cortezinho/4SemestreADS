@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.aweb.crud_no_db.dto.ProductDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -49,5 +51,19 @@ public class ProductController {
         if (products.remove(id) != null)
             return "Produto removido!";
         return "Produto não encontrado!";
+    }
+
+    // atualizar produto
+    @PutMapping("/{id}")
+    public ProductDTO updateProduct(
+        @PathVariable Long id,
+        @RequestBody ProductDTO updateProduct) {
+
+        if (products.containsKey(id))
+             updateProduct.setId(id);
+             products.put(id, updateProduct);
+        
+        return null;
+        
     }
 }
