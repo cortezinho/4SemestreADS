@@ -25,12 +25,19 @@ public class ProductService {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (optionalProduct.isPresent())
             return optionalProduct.get();
-        throw new RuntimeException("Produto não encontrado");
+        throw new RuntimeException("Produto não encontrado!");
     }
 
     // Inserir ou atualizar o produto
     public Product createProduct(Product product){
         return productRepository.save(product);
+    }
+
+    // Deletar produto
+    public void deleteProduct(Long id){
+        if (!productRepository.existsById(id))
+            throw new RuntimeException("Produto não encontrado!");
+        productRepository.deleteById(id);
     }
 
 }
