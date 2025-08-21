@@ -18,9 +18,10 @@ public class ProductController {
     private ProductService productService;
 
     // Listar produtos
+    @GetMapping
     public String list(Model model){
         model.addAttribute("products",productService.listAll());
-        return "product/list";
+        return "list";
     }
 
     // Retorna a view do formulario de cadastro/edição de produto
