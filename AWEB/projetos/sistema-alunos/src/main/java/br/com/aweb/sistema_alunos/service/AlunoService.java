@@ -34,4 +34,12 @@ public class AlunoService {
         return alunoRepository.save(aluno);
     }
 
+    // remover aluno
+    public void deleteAluno(Long id){
+        if (!alunoRepository.existsById(id)){
+            throw new RuntimeException("Erro ao remover aluno!");
+        }
+        alunoRepository.deleteById(id);
+    }
+
 }
