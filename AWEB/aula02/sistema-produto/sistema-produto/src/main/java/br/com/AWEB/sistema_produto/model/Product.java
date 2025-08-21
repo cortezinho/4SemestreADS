@@ -5,17 +5,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Product {
+
+    // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "Nome é obrigatório!")
     private String name;
-    @Positive(message = "Preço deve ser positivo!")
+
+    @NotNull(message = "O preço é obrigatório!")
+    @PositiveOrZero(message = "Preço deve ser positivo ou zero!")
     private Double price;
+
     private String description;
     
 
