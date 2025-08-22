@@ -186,3 +186,30 @@ a {
 .btn-secondary:hover {
     background-color: #5a6268;
 }
+
+
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+}
+
+.search-form button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #0066cc;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.search-form button:hover {
+    background-color: #004999;
+}

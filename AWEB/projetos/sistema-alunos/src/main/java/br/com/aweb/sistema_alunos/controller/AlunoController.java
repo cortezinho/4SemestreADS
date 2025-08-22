@@ -23,19 +23,19 @@ public class AlunoController {
     AlunoService alunoService;
 
     @GetMapping
-    public String list(Model model){
+    public String list(Model model) {
         model.addAttribute("alunos", alunoService.listAll());
         return "list";
     }
 
     @GetMapping("/new")
-    public String create(Model model){
+    public String create(Model model) {
         model.addAttribute("aluno", new Aluno());
         return "form";
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Long id, Model model, RedirectAttributes attributes){
+    public String edit(@PathVariable Long id, Model model, RedirectAttributes attributes) {
         try {
             model.addAttribute("aluno", alunoService.findAluno(id));
             return "form";
@@ -46,10 +46,10 @@ public class AlunoController {
     }
 
     @PostMapping
-    public String save(@Valid Aluno aluno, 
+    public String save(@Valid Aluno aluno,
             BindingResult result,
-            RedirectAttributes attributes){
-        if (result.hasErrors()){
+            RedirectAttributes attributes) {
+        if (result.hasErrors()) {
             return "form";
         }
         alunoService.createAluno(aluno);
@@ -58,7 +58,7 @@ public class AlunoController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, RedirectAttributes attributes){
+    public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         try {
             alunoService.deleteAluno(id);
             attributes.addFlashAttribute("message", "Aluno excluído com sucesso!");
@@ -68,5 +68,14 @@ public class AlunoController {
         return "redirect:/alunos";
     }
 
-    
+    @GetMapping("/search")
+    public String search(String nome, Model model) {
+        if (nome == null || nome.trim().isEmpty()) {
+            model.addAttribute("alunos", alunoService.listAll());
+        } else {
+            model.addAttribute("alunos", alunoService.searchByNome(nome));
+        }
+        return "list";
+    }
+
 }

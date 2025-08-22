@@ -20,6 +20,14 @@
         <p th:text="${error}"></p>
     </div>
 
+    <p>
+    <form th:action="@{/alunos/search}" method="get" class="search-form">
+        <input type="text" name="nome" placeholder="Digite o nome do aluno" />
+        <button type="submit">🔍 Buscar</button>
+    </form>
+</p>
+
+
     <p class="insert-link">
         <a class="btn btn-primary" th:href="@{/alunos/new}">➕ Novo Aluno</a>
     </p>
