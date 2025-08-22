@@ -12,7 +12,7 @@
 
     <h1 th:text="${aluno.id} == null ? 'Novo Produto' : 'Editar Produto'"></h1>
 
-    <form th:action="@{alunos}" th:object="${aluno}" method="post">
+    <form th:action="@{/alunos}" th:object="${aluno}" method="post">
 
         <input type="hidden" th:field="*{id}" />
 
