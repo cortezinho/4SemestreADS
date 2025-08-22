@@ -5,49 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/style.css}" />
-    <title>Listagem de Produtos</title>
+    <title>Listagem de Alunos</title>
 </head>
 
 <body>
 
-    <h1>Listagem de Produtos</h1>
+    <h1>📋 Listagem de Alunos</h1>
 
-    <div th:if="${message}" style="color: green; font-weight: bold;">
+    <div th:if="${message}" class="message">
         <p th:text="${message}"></p>
     </div>
 
-    <div th:if="${error}" style="color: red; font-weight: bold;">
+    <div th:if="${error}" class="error">
         <p th:text="${error}"></p>
     </div>
 
-    <p>
-        <a th:href="@{/alunos/new}">Inserir Produto</a>
+    <p class="insert-link">
+        <a class="btn btn-primary" th:href="@{/alunos/new}">➕ Novo Aluno</a>
     </p>
 
-    <table>
-        <tr>
-            <th>#</th>
-            <th>NAME</th>
-            <th>PRICE</th>
-            <th>DESCRIPTION</th>
-            <th>ACTIONS</th>
-            <th></th>
-        </tr>
-        <tr th:each="prod : ${alunos}">
-            <td th:text="${prod.id}">---</td>
-            <td th:text="${prod.nome}">---</td>
-            <td th:text="${prod.idade}">---</td>
-            <td th:text="${prod.materia}">---</td>
-            <td>
-                <a th:href="@{'/alunos/edit/' + ${prod.id}}">UPDATE</a>
-            </td>
-            <td>
-                <a th:href="@{'/alunos/delete/' + ${prod.id}}"
-                    onclick="return confirm('Tem certeza que deseja excluir este produto?');">
-                    DELETE
-                </a>
-            </td>
-        </tr>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Matéria</th>
+                <th colspan="2" style="text-align: center;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="aluno : ${alunos}">
+                <td th:text="${aluno.id}">---</td>
+                <td th:text="${aluno.nome}">---</td>
+                <td th:text="${aluno.idade}">---</td>
+                <td th:text="${aluno.materia}">---</td>
+                <td>
+                    <a class="btn btn-edit" th:href="@{'/alunos/edit/' + ${aluno.id}}">✏️ Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-delete" th:href="@{'/alunos/delete/' + ${aluno.id}}"
+                        onclick="return confirm('Tem certeza que deseja excluir este aluno?');">
+                        🗑️ Excluir
+                    </a>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </body>
 
