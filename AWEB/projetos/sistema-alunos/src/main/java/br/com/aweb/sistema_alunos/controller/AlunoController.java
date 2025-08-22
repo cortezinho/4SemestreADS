@@ -23,7 +23,7 @@ public class AlunoController {
     AlunoService alunoService;
 
     @GetMapping
-    public String lis(Model model){
+    public String list(Model model){
         model.addAttribute("alunos", alunoService.listAll());
         return "list";
     }

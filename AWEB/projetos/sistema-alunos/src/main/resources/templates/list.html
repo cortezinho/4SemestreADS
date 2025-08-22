@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" th:href="@{/css/style.css}" /> -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
     <title>Listagem de Produtos</title>
 </head>
 
@@ -33,16 +33,16 @@
             <th>ACTIONS</th>
             <th></th>
         </tr>
-        <tr th:each="prod : ${products}">
+        <tr th:each="prod : ${alunos}">
             <td th:text="${prod.id}">---</td>
-            <td th:text="${prod.name}">---</td>
-            <td th:text="${prod.price}">---</td>
-            <td th:text="${prod.description}">---</td>
+            <td th:text="${prod.nome}">---</td>
+            <td th:text="${prod.idade}">---</td>
+            <td th:text="${prod.materia}">---</td>
             <td>
-                <a th:href="@{'/products/edit/' + ${prod.id}}">UPDATE</a>
+                <a th:href="@{'/alunos/edit/' + ${prod.id}}">UPDATE</a>
             </td>
             <td>
-                <a th:href="@{'/products/delete/' + ${prod.id}}"
+                <a th:href="@{'/alunos/delete/' + ${prod.id}}"
                     onclick="return confirm('Tem certeza que deseja excluir este produto?');">
                     DELETE
                 </a>
