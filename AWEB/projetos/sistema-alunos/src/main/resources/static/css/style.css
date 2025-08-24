@@ -4,6 +4,15 @@ body {
     background: #f9f9f9;
 }
 
+.titulo {
+    color: #222;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 h1 {
     color: #222;
     margin-bottom: 20px;
