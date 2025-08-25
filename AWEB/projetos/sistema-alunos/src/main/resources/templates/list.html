@@ -22,6 +22,11 @@
     </form>
     </p>
 
+    <h1>📋 Listagem de Alunos</h1>
+    <p class="insert-link">
+        <a class="btn btn-primary" th:href="@{/alunos/new}">➕ Novo Aluno</a>
+    </p>
+
     <div th:if="${message}" class="message">
         <p th:text="${message}"></p>
     </div>
@@ -29,11 +34,6 @@
     <div th:if="${error}" class="error">
         <p th:text="${error}"></p>
     </div>
-
-    <h1>📋 Listagem de Alunos</h1>
-    <p class="insert-link">
-        <a class="btn btn-primary" th:href="@{/alunos/new}">➕ Novo Aluno</a>
-    </p>
 
     <table class="styled-table">
         <thead>
