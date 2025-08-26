@@ -22,6 +22,10 @@
     </form>
     </p>
 
+    <div th:if="${errorA}" style="color: red; font-weight: bold; margin-bottom: 10px;">
+        <p th:text="${errorA}"></p>
+    </div>
+
     <h1>📋 Listagem de Alunos</h1>
     <p class="insert-link">
         <a class="btn btn-primary" th:href="@{/alunos/new}">➕ Novo Aluno</a>

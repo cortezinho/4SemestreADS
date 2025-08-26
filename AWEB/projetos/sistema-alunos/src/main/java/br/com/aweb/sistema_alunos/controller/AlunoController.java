@@ -1,5 +1,7 @@
 package br.com.aweb.sistema_alunos.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.aweb.sistema_alunos.model.Aluno;
@@ -69,12 +72,15 @@ public class AlunoController {
     }
 
     @GetMapping("/search")
-    public String search(String nome, Model model) {
-        if (nome == null || nome.trim().isEmpty()) {
-            model.addAttribute("alunos", alunoService.listAll());
+    public String searchAluno(@RequestParam String nome, Model model) {
+        List<Aluno> alunos = alunoService.searchByNome(nome);
+
+        if (alunos.isEmpty()) {
+            model.addAttribute("errorA", "Nenhum aluno encontrado com o nome: " + nome);
         } else {
-            model.addAttribute("alunos", alunoService.searchByNome(nome));
+            model.addAttribute("alunos", alunos);
         }
+
         return "list";
     }
 
