@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title th:text="${aluno.id} == null ? 'Novo Aluno' : 'Editar Aluno'"></title>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h1 th:text="${aluno.id} == null ? '➕ Novo Aluno' : '✏️ Editar Aluno'"></h1>
+
+        <form th:action="@{/alunos}" th:object="${aluno}" method="post" class="styled-form">
+
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}" placeholder="Digite o nome do aluno" />
+                <span class="error-message" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" th:field="*{idade}" placeholder="Digite a idade" />
+                <span class="error-message" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="materia">Matéria:</label>
+                <textarea id="materia" th:field="*{materia}" placeholder="Digite a matéria favorita"></textarea>
+                <span class="error-message" th:if="${#fields.hasErrors('materia')}" th:errors="*{materia}"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">💾 Salvar</button>
+                <a th:href="@{/alunos}" class="btn btn-secondary">⬅ Voltar</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
