@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title>Produtos - Buscar por nome</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Buscar produto por nome</h1>
+
+      <form th:action="@{/products/search}" method="get" role="search">
+        <label for="name" class="muted">Nome do produto</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Ex.: Teclado"
+          th:value="${param.name}"
+        />
+        <button type="submit">Buscar</button>
+        <a th:href="@{/products}" class="button">Voltar à lista</a>
+      </form>
+
+      <div th:if="${products != null}">
+        <p class="muted" th:if="${#lists.isEmpty(products)}">
+          Nenhum produto encontrado.
+        </p>
+
+        <table th:if="${!#lists.isEmpty(products)}">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="prod : ${products}">
+              <td th:text="${prod.id}">1</td>
+              <td th:text="${prod.name}">Exemplo</td>
+              <td>
+                <a th:href="@{'/products/edit/' + ${prod.id}}">Editar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SistemaProdutoApplication<sistema-produto>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.com.AWEB.sistema_produto.SistemaProdutoApplication",
+      "projectName": "sistema-produto",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
