@@ -28,7 +28,7 @@ public class Todo {
     @Column(length = 100, nullable = false)
     private String title;
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    private LocalDateTime createAt = LocalDateTime.now();
     @Column(nullable = false)
     private LocalDate deadline;
     @Column(nullable = true)
