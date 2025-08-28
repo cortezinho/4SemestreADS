@@ -35,9 +35,9 @@
         <tr th:each="todo : ${todos}">
           <th scope="row" th:text="${todo.id}">---</th>
           <td th:text="${todo.title}">---</td>
-          <td th:text="${todo.createAt}">---</td>
-          <td th:text="${todo.deadline}">---</td>
-          <td th:text="${todo.finishedAt}">---</td>
+          <td th:text="${#temporals.format(todo.createAt)}">---</td>
+          <td th:text="${#temporals.format(todo.deadline)}">---</td>
+          <td th:text="${#temporals.format(todo.finishedAt)}">---</td>
           <td>
             <a href="" class="btn btn-sm btn-primary">Concluir</a>
             <a href="" class="btn btn-sm btn-secondary">Editar</a>
