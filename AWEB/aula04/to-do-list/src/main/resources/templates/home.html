@@ -11,5 +11,6 @@
     <ul>
       <li th:each="aluno : ${alunos}" th:text="${aluno}">---</li>
     </ul>
+    <p th:if="${ehVerdade}">Java é mais divertido do que Python!</p>
   </body>
 </html>
