@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ModelAndView</title>
+  </head>
+  <body>
+    <h1>Exemplo ModelAndView</h1>
+    <p th:text="${professor}">---</p>
+    <ul>
+      <li th:each="aluno : ${alunos}" th:text="${aluno}">---</li>
+    </ul>
+  </body>
+</html>
