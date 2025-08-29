@@ -8,7 +8,7 @@ export default function App() {
 
   async function buscar() {
     try {
-      const result = await api.get('https://api.thecatapi.com/v1/images/search?limit=10');
+      const result = await api.get('https://api.thecatapi.com/v1/images/search?limit=10&#39;);
       console.log(result.data);
       setCats(result.data);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function App() {
   };
 
   return (
-    <View style = {styles.container}>
+    <View>
       <Button
         title="Clique aqui"
         onPress={buscar}
@@ -43,13 +43,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: "center",
-    justifyContent: 'center',
-    marginTop:50
-  },
   card: {
     marginBottom: 20,
     alignItems: 'center',

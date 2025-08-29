@@ -1,0 +1,53 @@
+import { useState } from 'react';
+import { Button, StyleSheet, View, Image, ActivityIndicator } from 'react-native';
+import api from './src/services/api';
+
+export default function App() {
+  const [catImage, setCatImage] = useState(null); 
+  const [loading, setLoading] = useState(false);  
+
+  async function buscar() {
+    try {
+      setLoading(true);
+      setCatImage(null);
+      const result = await api.get('https://api.thecatapi.com/v1/images/search?limit=10');
+      const imageUrl = result.data[0].url;
+      setCatImage(imageUrl);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false); 
+    }
+  }
+
+  return (
+    <View style={styles.container}>
+      <Button title="Mostrar Gato 😺" onPress={buscar} />
+
+      {loading && <ActivityIndicator size="large" color="#0000ff" style={{ marginTop: 20 }} />}
+
+      {catImage && !loading && (
+        <Image 
+          source={{ uri: catImage }}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    marginTop: 20,
+    width: 300,
+    height: 300,
+    borderRadius: 10,
+  },
+});
