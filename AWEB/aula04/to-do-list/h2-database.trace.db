@@ -2015,3 +2015,12 @@ INSERT INTO TODO (title, create_at, deadline, finished_at) VALUES
 2025-08-27 21:35:20.415808-03:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * from [*]table"; expected "identifier"; SQL statement:
 select * from table [42001-232]
+2025-09-03 18:54:54.306531-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.create_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
+2025-09-03 18:54:55.427116-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.create_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
+2025-09-03 19:11:26.647349-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.create_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
