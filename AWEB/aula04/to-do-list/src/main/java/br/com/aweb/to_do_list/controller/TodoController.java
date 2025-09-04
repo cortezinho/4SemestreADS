@@ -70,7 +70,7 @@ public class TodoController {
     @GetMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable Long id) {
         Optional<Todo> todo = todoRepository.findById(id);
-        if (todo.isPresent()) {
+        if (todo.isPresent() && todo.get().getFinishedAt() == null) {
             return new ModelAndView("form", Map.of("todo", todo.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -105,7 +105,7 @@ public class TodoController {
     @PostMapping("/finish/{id}")
     public String finish(@PathVariable Long id) {
         var optionalTodo = todoRepository.findById(id);
-        if (optionalTodo.isPresent()) {
+        if (optionalTodo.isPresent() && optionalTodo.get().getFinishedAt() == null) {
             var todo = optionalTodo.get();
             todo.setFinishedAt(LocalDate.now());
             todoRepository.save(todo);
