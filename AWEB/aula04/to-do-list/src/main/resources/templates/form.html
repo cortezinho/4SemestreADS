@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nova Tarefa</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/todo}">To Do List</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <h1>Nova Tarefa</h1>
+
+      <form method="post" th:object="${todo}">
+        <div class="mb-3">
+          <label for="title" class="for-label">Título</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            th:filed="*{title}"
+          />
+          <ul>
+            <li
+              th:each="error : ${#fields.errors('title')}"
+              th:text="${error}"
+              class="text-danger"
+            ></li>
+          </ul>
+        </div>
+        <div class="mb-3">
+          <label for="deadline" class="for-label">Data de Entrega</label>
+          <input
+            type="date"
+            class="form-control"
+            id="deadline"
+            th:filed="*{deadline}"
+          />
+          <ul>
+            <li
+              th:each="error : ${#fields.errors('deadline')}"
+              th:text="${error}"
+              class="text-danger"
+            ></li>
+          </ul>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

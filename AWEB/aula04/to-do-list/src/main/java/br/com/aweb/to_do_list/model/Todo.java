@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,13 +35,13 @@ public class Todo {
 
     @Size(min = 3, max = 100)
     @NotBlank
-    @Column(length = 100, nullable = false)
+    @Column(nullable = false, length = 100)
     private String title;
 
     @Column(nullable = false)
     private LocalDateTime createAt = LocalDateTime.now();
 
-    @NonNull
+    @NotNull
     @FutureOrPresent
     @DateTimeFormat(iso = ISO.DATE)
     @Column(nullable = false)
