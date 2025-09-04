@@ -46,7 +46,11 @@
                 th:action="@{/todo/finish/{id}(id=${todo.id})}"
                 method="post"
               >
-                <button type="submit" class="btn btn-sm btn-primary">
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-primary"
+                  th:classappend="${todo.finishedAt} ?'disabled':''"
+                >
                   Concluir
                 </button>
               </form>
@@ -55,6 +59,7 @@
               <a
                 th:href="@{/todo/edit/{id}(id=${todo.id})}"
                 class="btn btn-sm btn-secondary"
+                th:classappend="${todo.finishedAt} ?'disabled':''"
                 >Editar</a
               >
 
