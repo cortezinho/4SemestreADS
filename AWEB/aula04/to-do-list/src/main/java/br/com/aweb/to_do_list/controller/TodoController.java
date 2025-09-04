@@ -57,6 +57,15 @@ public class TodoController {
         return new ModelAndView("form", Map.of("todo", new Todo()));
     }
 
+    @PostMapping("/create")
+    public String create(@Valid Todo todo, BindingResult result) {
+        if (result.hasErrors()) {
+            return "form";
+        }
+        todoRepository.save(todo);
+        return "redirect:/todo";
+    }
+
     @GetMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable Long id) {
         Optional<Todo> todo = todoRepository.findById(id);
@@ -67,8 +76,8 @@ public class TodoController {
 
     }
 
-    @PostMapping("/create")
-    public String create(@Valid Todo todo, BindingResult result) {
+    @PostMapping("/edit/{id}")
+    public String edit(@Valid Todo todo, BindingResult result) {
         if (result.hasErrors()) {
             return "form";
         }
@@ -76,12 +85,19 @@ public class TodoController {
         return "redirect:/todo";
     }
 
-    @PostMapping("/edit/{id}")
-    public String edit(@Valid Todo todo, BindingResult result) {
-        if (result.hasErrors()) {
-            return "form";
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Long id) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        if (todo.isPresent()) {
+            return new ModelAndView("delete", Map.of("todo", todo.get()));
         }
-        todoRepository.save(todo);
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(Todo todo) {
+        todoRepository.delete(todo);
         return "redirect:/todo";
     }
 
