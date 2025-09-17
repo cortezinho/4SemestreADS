@@ -1,4 +1,6 @@
-package br.com.aweb.sistema_vendas.entity;
+package br.com.aweb.sistema_vendas.model;
+
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,7 +39,7 @@ public class Produto {
     @Positive(message = "O valor do preço deve ser maior que zero!")
     @NotNull(message = "O preço é obrigatório!")
     @Column(nullable = false)
-    private Double preco;
+    private BigDecimal preco;
 
     @PositiveOrZero(message = "Quantidade em estoque invalida!")
     @NotNull(message = "Precisa ter pelo menos 1 em estoque!")

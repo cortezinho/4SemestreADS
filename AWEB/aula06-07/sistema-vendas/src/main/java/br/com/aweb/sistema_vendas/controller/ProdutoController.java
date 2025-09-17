@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.aweb.sistema_vendas.entity.Produto;
+import br.com.aweb.sistema_vendas.model.Produto;
 import br.com.aweb.sistema_vendas.services.ProdutosServices;
 import jakarta.validation.Valid;
 
@@ -24,14 +24,14 @@ public class ProdutoController {
     // formulario de cadastro
     @GetMapping("/novo")
     public ModelAndView create() {
-        return new ModelAndView("produtos/form", Map.of("produto", new Produto()));
+        return new ModelAndView("produto/form", Map.of("produto", new Produto()));
     }
 
     // salvar produtos
     @PostMapping("/novo")
     public String create(@Valid Produto produto, BindingResult result) {
         if (result.hasErrors()) {
-            return "produtos/form";
+            return "produto/form";
         }
         produtosServices.salvar(produto);
         return "redirect:/produtos";
