@@ -1,7 +1,6 @@
 package br.com.aweb.sistema_vendas.controller;
 
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,6 +63,23 @@ public class ProdutoController {
             return "produto/form";
         }
         produtosServices.atualizar(produto.getId(), produto);
+        return "redirect:/produtos";
+
+    }
+
+    // excluir produto
+    @GetMapping("/deletar/{id}")
+    public ModelAndView delete(@PathVariable Long id) {
+        var optionalProduto = produtosServices.buscarPorId(id);
+        if (optionalProduto.isPresent()) {
+            return new ModelAndView("produto/deletar", Map.of("produto", optionalProduto.get()));
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/deletar/{id}")
+    public String delete(Produto produto) {
+        produtosServices.Excluir(produto.getId());
         return "redirect:/produtos";
 
     }
