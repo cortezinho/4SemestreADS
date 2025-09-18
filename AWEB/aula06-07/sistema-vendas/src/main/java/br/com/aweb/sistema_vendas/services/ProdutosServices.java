@@ -48,6 +48,12 @@ public class ProdutosServices {
     }
 
     // DELETE
-    
+    @Transactional
+    public void Excluir(Long id) {
+        var optionalProduto = buscarPorId(id);
+        if (!optionalProduto.isPresent()) {
+            ProdutoRepository.deleteById(id);
+        }
+    }
 
 }
