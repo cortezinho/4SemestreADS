@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,7 +42,7 @@ public class Cliente {
 
     @NotBlank(message = "Número de telefone é obrigatório!")
     @Column(nullable = false)
-    private Integer telefone;
+    private String telefone;
     
     // ENDEREÇO
     @NotBlank(message = "Nome é obrigatório!")
@@ -66,6 +67,6 @@ public class Cliente {
 
     @NotBlank(message = "CEP é obrigatório!")
     @Column(nullable = false, length = 100)
-    private Integer cep;
+    private String cep;
 
 }

@@ -16,4 +16,4 @@ volumes:
 
 
 # Comando pra subir container no DOCKER
-# docker-compose -d
+# docker-compose up -d
