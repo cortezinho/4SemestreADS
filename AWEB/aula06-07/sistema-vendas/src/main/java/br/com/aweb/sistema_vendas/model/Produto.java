@@ -29,7 +29,7 @@ public class Produto {
 
     @NotBlank(message = "Nome do produto é obrigatório!")
     @Column(nullable = false, length = 100)  //validação do banco de dados
-    private String nomeProduto;
+    private String nome;
 
     @NotBlank(message = "Produto precisa ter uma descrição!")
     @Column(nullable = false, length = 255)

@@ -17,28 +17,19 @@ public class ProdutosServices {
 
     // CREATE
     @Transactional
-    public Produto salvar(Produto produto){
+    public Produto salvar(Produto produto) {
         return ProdutoRepository.save(produto);
     }
 
-    // Listar todos os produtos
-    public List<Produto> listAll(){
+    // READ
+    public List<Produto> listarTodos() {
         return ProdutoRepository.findAll();
     }
 
-    // Buscar produto por ID
-    public Produto findProduct(Long id){
-        Optional<Produto> optionalProduto = ProdutoRepository.findById(id);
-        if (optionalProduto.isPresent())
-            return optionalProduto.get();
-        throw new RuntimeException("Produto não encontrado!");
+    // UPDATE
+    @Transactional
+    public Produto atualizar(Long id, Produto produto) {
+        
     }
 
-    // Deletar produto
-    @Transactional
-    public void deleteProduct(Long id){
-        if (!ProdutoRepository.existsById(id))
-            throw new RuntimeException("Produto não encontrado!");
-        ProdutoRepository.deleteById(id);
-    }
 }
