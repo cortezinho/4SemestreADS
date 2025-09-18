@@ -26,10 +26,17 @@ public class ProdutosServices {
         return ProdutoRepository.findAll();
     }
 
+    public Optional<Produto> buscarPorId(Long id) {
+        return ProdutoRepository.findById(id);
+    }
+
     // UPDATE
     @Transactional
     public Produto atualizar(Long id, Produto produto) {
-        
+        var optionalProduto = buscarPorId(id);
+        if (!optionalProduto.isPresent()) {
+            throw new IllegalArgumentException("Produto não encotrado.");
+        }
     }
 
 }
