@@ -32,11 +32,22 @@ public class ProdutosServices {
 
     // UPDATE
     @Transactional
-    public Produto atualizar(Long id, Produto produto) {
+    public Produto atualizar(Long id, Produto produtoAtualizado) {
         var optionalProduto = buscarPorId(id);
         if (!optionalProduto.isPresent()) {
             throw new IllegalArgumentException("Produto não encotrado.");
         }
+        var produtoExistente = optionalProduto.get();
+
+        produtoExistente.setNome(produtoAtualizado.getNome());
+        produtoExistente.setDescricao(produtoAtualizado.getDescricao());
+        produtoExistente.setPreco(produtoAtualizado.getPreco());
+        produtoExistente.setEstoque(produtoAtualizado.getEstoque());
+
+        return ProdutoRepository.save(produtoExistente);
     }
+
+    // DELETE
+    
 
 }
