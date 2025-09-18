@@ -57,14 +57,15 @@ public class ProdutoController {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    // salvar produtos
-    @PostMapping("/novo")
-    public String create(@Valid Produto produto, BindingResult result) {
+    // atualizar produto
+    @PostMapping("/editar/{id}")
+    public String edit(@Valid Produto produto, BindingResult result) {
         if (result.hasErrors()) {
             return "produto/form";
         }
-        produtosServices.salvar(produto);
+        produtosServices.atualizar(produto.getId(), produto);
         return "redirect:/produtos";
+
     }
 
 }
