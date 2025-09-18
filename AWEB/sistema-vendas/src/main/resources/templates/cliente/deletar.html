@@ -14,22 +14,57 @@
     </div>
 
     <table class="table table-bordered">
+
         <tr>
             <th>Nome</th>
             <td th:text="${produto.nome}"></td>
         </tr>
+
         <tr>
-            <th>Descrição</th>
-            <td th:text="${produto.descricao}"></td>
+            <th>CPF</th>
+            <td th:text="${produto.cpf}"></td>
         </tr>
+
         <tr>
-            <th>Preço</th>
-            <td th:text="${produto.preco}"></td>
+            <th>Email</th>
+            <td th:text="${produto.email}"></td>
         </tr>
+
         <tr>
-            <th>Quantidade em Estoque</th>
-            <td th:text="${produto.estoque}"></td>
-        </tr>        
+            <th>Endereço</th>
+            <td th:text="${produto.logradouro}"></td>
+        </tr>
+
+        <tr>
+            <th>Número</th>
+            <td th:text="${produto.numero}"></td>
+        </tr>
+
+        <tr>
+            <th>Complemento</th>
+            <td th:text="${produto.complemento}"></td>
+        </tr>
+
+        <tr>
+            <th>Bairro</th>
+            <td th:text="${produto.bairro}"></td>
+        </tr>
+
+        <tr>
+            <th>Cidade</th>
+            <td th:text="${produto.cidade}"></td>
+        </tr>
+
+        <tr>
+            <th>Estado</th>
+            <td th:text="${produto.uf}"></td>
+        </tr>
+
+        <tr>
+            <th>CEP</th>
+            <td th:text="${produto.cep}"></td>
+        </tr>
+                
     </table>
 
     <form th:action="@{/produtos/delete/{id}(id=${produto.id})}" method="post">
