@@ -48,10 +48,13 @@ public class ProdutoController {
     }
 
     // formulario de edição
-    @GetMapping("/edit{id}")
+    @GetMapping("/editar/{id}")
     public ModelAndView edit(@PathVariable Long id) {
-
-        return new ModelAndView("produto/form", Map.of("produto", new Produto()));
+        var optionalProduto = produtosServices.buscarPorId(id);
+        if (optionalProduto.isPresent()) {
+            return new ModelAndView("produto/form", Map.of("produto", optionalProduto.get()));
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     // salvar produtos
