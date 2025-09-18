@@ -32,7 +32,7 @@
         </tr>        
     </table>
 
-    <form th:action="@{/produtos/delete/{id}(id=${produto.id})}" method="post">
+    <form th:action="@{/produtos/deletar/{id}(id=${produto.id})}" method="post">
         <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
         <a th:href="@{/produtos}" class="btn btn-secondary">Cancelar</a>
     </form>
