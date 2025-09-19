@@ -43,12 +43,13 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 30px; /* Aumentar o padding para que o conteúdo fique mais espaçado */
-  width: 350px;  /* Aumenta a largura das seções */
-  height: 500px;  /* Aumenta a altura das seções */
+  width: 30vw;  /* Aumenta a largura das seções */
+  height: 90vh;  /* Aumenta a altura das seções */
   min-height: 400px;  /* Definir uma altura mínima */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* Alinha o conteúdo de forma mais espaçada */
+  justify-content: center;  /* Centraliza o conteúdo verticalmente */
+  align-items: center;      /* Centraliza o conteúdo horizontalmente */
 }
 
 /* Estilos adicionais para tornar o layout mais confortável */
@@ -56,13 +57,15 @@ body {
   flex-grow: 1;
 }
 
-/* Estilo da imagem do perfil */
+/* Estilo da imagem de perfil usando background */
 .profile-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #ddd;
-  margin-bottom: 15px;
+  width: 100%;         /* A largura será 100% da largura da seção */
+  height: 100%;        /* A altura será 100% da altura da seção */
+  border-radius: 50%;  /* Torna a imagem redonda */
+  background-image: url('./assets/images/perfil.png'); /* Caminho para a imagem de perfil */
+  background-size: cover; /* A imagem cobre a área da div sem distorcer */
+  background-position: center; /* Centraliza a imagem dentro da div */
+  margin-bottom: 15px;    /* Espaço abaixo da imagem */
 }
 
 /* Título e texto do perfil */
@@ -77,6 +80,7 @@ p {
   margin-bottom: 10px;
 }
 
+/* Botão de logout */
 .logout-btn {
   background-color: #007bff;
   color: white;
