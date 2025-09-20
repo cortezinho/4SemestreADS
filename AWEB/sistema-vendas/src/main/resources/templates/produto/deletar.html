@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Produto</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Excluir Produto</h1>
+
+    <div class="alert alert-danger">
+        <p>Tem certeza que deseja excluir o produto <strong th:text="${produto.nome}"></strong>?</p>
+    </div>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Nome</th>
+            <td th:text="${produto.nome}"></td>
+        </tr>
+        <tr>
+            <th>Descrição</th>
+            <td th:text="${produto.descricao}"></td>
+        </tr>
+        <tr>
+            <th>Preço</th>
+            <td th:text="${produto.preco}"></td>
+        </tr>
+        <tr>
+            <th>Quantidade em Estoque</th>
+            <td th:text="${produto.estoque}"></td>
+        </tr>        
+    </table>
+
+    <form th:action="@{/produtos/deletar/{id}(id=${produto.id})}" method="post">
+        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+        <a th:href="@{/produtos}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

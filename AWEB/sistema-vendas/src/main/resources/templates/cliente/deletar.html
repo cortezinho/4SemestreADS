@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Cliente</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Excluir Cliente</h1>
+
+    <div class="alert alert-danger">
+        <p>Tem certeza que deseja excluir o cliente <strong th:text="${cliente.nome}"></strong>?</p>
+    </div>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>Nome</th>
+            <td th:text="${cliente.nome}"></td>
+        </tr>
+
+        <tr>
+            <th>CPF</th>
+            <td th:text="${cliente.cpf}"></td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td th:text="${cliente.email}"></td>
+        </tr>
+
+        <tr>
+            <th>Endereço</th>
+            <td th:text="${cliente.logradouro}"></td>
+        </tr>
+
+        <tr>
+            <th>Número</th>
+            <td th:text="${cliente.numero}"></td>
+        </tr>
+
+        <tr>
+            <th>Complemento</th>
+            <td th:text="${cliente.complemento}"></td>
+        </tr>
+
+        <tr>
+            <th>Bairro</th>
+            <td th:text="${cliente.bairro}"></td>
+        </tr>
+
+        <tr>
+            <th>Cidade</th>
+            <td th:text="${cliente.cidade}"></td>
+        </tr>
+
+        <tr>
+            <th>Estado</th>
+            <td th:text="${cliente.uf}"></td>
+        </tr>
+
+        <tr>
+            <th>CEP</th>
+            <td th:text="${cliente.cep}"></td>
+        </tr>
+                
+    </table>
+
+    <form th:action="@{/clientes/deletar/{id}(id=${cliente.id})}" method="post">
+        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+        <a th:href="@{/clientes}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

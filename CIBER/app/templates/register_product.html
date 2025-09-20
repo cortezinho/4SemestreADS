@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h2>Cadastro de Produto</h2>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Nome do produto" required>
+        <input type="number" step="0.01" name="price" placeholder="Preço" required>
+        <textarea name="description" placeholder="Descrição" required></textarea>
+        <button type="submit">Cadastrar Produto</button>
+    </form>
+</body>
+</html>

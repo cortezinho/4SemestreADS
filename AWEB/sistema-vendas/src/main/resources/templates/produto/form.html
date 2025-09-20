@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:unless="${produto.id == null}">Edição de Produto</title>
+    <title th:if="${produto.id == null}">Cadastro de Produto</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 th:text="${produto.id == null} ? 'Novo Produto' : 'Editar Produto'"></h2>
+    <form th:action="@{${produto.id == null} ? '/produtos/novo' : '/produtos/editar/' + ${produto.id}}" th:object="${produto}" method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" th:field="*{nome}">
+            <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descricao</label>
+            <input type="text" class="form-control" id="descricao" th:field="*{descricao}">
+            <div class="text-danger" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="preco" class="form-label">Preço</label>
+            <input type="number" class="form-control" id="preco" th:field="*{preco}">
+            <div class="text-danger" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="estoque" class="form-label">Quantidade em Estoque</label>
+            <input type="number" class="form-control" id="estoque" th:field="*{estoque}">
+            <div class="text-danger" th:if="${#fields.hasErrors('estoque')}" th:errors="*{estoque}"></div>
+        </div>        
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a th:href="@{/produtos}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

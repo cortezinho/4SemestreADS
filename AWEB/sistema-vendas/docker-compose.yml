@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_sistema
+    environment:
+       POSTGRES_USER: usuario
+       POSTGRES_PASSWORD: 123
+       POSTGRES_DB: sistema_vendas
+    ports:
+        - "5432:5432"
+    volumes: 
+        - postgres_data:/var/lib/postgresql/data
+      
+volumes:
+  postgres_data: 
+
+
+# Comando pra subir container no DOCKER
+# docker-compose up -d
