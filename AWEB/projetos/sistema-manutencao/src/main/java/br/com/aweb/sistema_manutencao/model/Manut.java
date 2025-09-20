@@ -35,6 +35,16 @@ public class Manut {
     @Column(nullable = true)
     private LocalDate finalizadoEm;
 
+    @Size(min = 3, max = 100)
+    @NotBlank
+    @Column(nullable = false, length = 100)
+    private String nome;
+
+    @Size(min = 3, max = 200)
+    @NotBlank
+    @Column(nullable = false, length = 100)
+    private String descricao;
+
     // @NotNull
     // @FutureOrPresent
     // @DateTimeFormat(iso = ISO.DATE)

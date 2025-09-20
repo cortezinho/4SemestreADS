@@ -19,6 +19,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Título</th>
+                    <th scope="col">Solicitante</th>
+                    <th scope="col">Descrição</th>
                     <th scope="col">Criado em</th>
                     <th scope="col">Finalizado em</th>
                     <th scope="col">Ações</th>
@@ -28,23 +30,26 @@
                 <tr th:each="manut : ${manuts}">
                     <th scope="row" th:text="${manut.id}">---</th>
                     <td th:text="${manut.titulo}">---</td>
+                    <td th:text="${manut.nome}">---</td>
+                    <td th:text="${manut.descricao}">---</td>
                     <td th:text="${#temporals.format(manut.criadoEm)}">---</td>
                     <td th:text="${#temporals.format(manut.finalizadoEm) ?: '-'}">---</td>
                     <td>
-                        <a href="" class="btn btn-sm btn-primary">Concluir</a>
-                        <!-- <form class="d-inline" th:action="@{/manut/finish/{id}(id=${manut.id})}" method="post">
+                        <!-- <a href="" class="btn btn-sm btn-primary">Concluir</a> -->
+                        <form class="d-inline" th:action="@{/manutencao/finalizar/{id}(id=${manut.id})}" method="post">
                             <button type="submit" class="btn btn-sm btn-primary"
-                                th:classappend="${manut.finishedAt} ?'disabled':''">
+                                th:classappend="${manut.finalizadoEm} ?'disabled':''">
                                 Concluir
                             </button>
-                        </form> -->
+                        </form>
 
-                        <a href="" class="btn btn-sm btn-secondary">Editar</a>
-                        <!-- <a th:href="@{/manut/edit/{id}(id=${manut.id})}" class="btn btn-sm btn-secondary"
-                            th:classappend="${manut.finishedAt} ?'disabled':''">Editar</a> -->
+                        <!-- <a href="" class="btn btn-sm btn-secondary">Editar</a> -->
+                        <a th:href="@{/manutencao/editar/{id}(id=${manut.id})}" class="btn btn-sm btn-secondary"
+                            th:classappend="${manut.finalizadoEm} ?'disabled':''">Editar</a>
 
-                        <a href="" class="btn btn-sm btn-danger">Excluir</a>
-                        <!-- <a th:href="@{/manut/delete/{id}(id=${manut.id})}" class="btn btn-sm btn-danger">Excluir</a> -->
+                        <!-- <a href="" class="btn btn-sm btn-danger">Excluir</a> -->
+                        <a th:href="@{/manutencao/deletar/{id}(id=${manut.id})}"
+                            class="btn btn-sm btn-danger">Excluir</a>
                     </td>
                 </tr>
             </tbody>
@@ -52,7 +57,7 @@
 
         <p th:if="${#lists.isEmpty(manuts)}">Nenhuma Tarefa Cadastrada</p>
 
-        <a th:href="@{manutencao/create}" class="btn btn-sm btn-primary">Nova Tarefa</a>
+        <a th:href="@{manutencao/criar}" class="btn btn-sm btn-primary">Nova Tarefa</a>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

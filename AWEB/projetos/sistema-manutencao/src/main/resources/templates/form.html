@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:unless="${manut.id}">Manutenções - Nova Tarefa</title>
+    <title th:if="${manut.id}">Manutenções - Editar Tarefa</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/manutencao}">Lista de manutenções</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <h1 th:unless="${manut.id}">Nova Tarefa</h1>
+      <h1 th:if="${manut.id}">Editar Tarefa</h1>
+
+      <form method="post" th:object="${manut}">
+        <div class="mb-3">
+          <label for="titulo" class="for-label">Título</label>
+          <input
+            type="text"
+            class="form-control"
+            id="titulo"
+            th:field="*{titulo}"
+          />
+          <ul>
+            <li
+              th:each="error : ${#fields.errors('titulo')}"
+              th:text="${error}"
+              class="text-danger"
+            ></li>
+          </ul>
+        </div>
+
+        <div class="mb-3">
+          <label for="nome" class="for-label">Solicitante</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            th:field="*{nome}"
+          />
+          <ul>
+            <li
+              th:each="error : ${#fields.errors('nome')}"
+              th:text="${error}"
+              class="text-danger"
+            ></li>
+          </ul>
+        </div>
+
+        <div class="mb-3">
+          <label for="descricao" class="for-label">Descrição</label>
+          <input
+            type="text"
+            class="form-control"
+            id="descricao"
+            th:field="*{descricao}"
+          />
+          <ul>
+            <li
+              th:each="error : ${#fields.errors('descricao')}"
+              th:text="${error}"
+              class="text-danger"
+            ></li>
+          </ul>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
