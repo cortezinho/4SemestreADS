@@ -1,0 +1,128 @@
+
+
+body, html, #root {
+  margin: 0; 
+  padding: 0; 
+  height: 100%;
+  /* font-family: 'Press Start 2P', cursive; */
+  background-image: url('./assets/img/fundoTelaInicial.png');
+  background-size: cover;  /* Para deixar o fundo ajustado à tela */
+  background-position: center;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent; /* Para não tirar o fundo original */
+}
+
+.title {
+  color: black;
+  font-size: 4vw; /* Aumentei para maior destaque */
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 4px 4px 0 white; /* Sombra mais forte para contraste */
+  letter-spacing: 0.05em; /* Pequeno espaçamento entre letras */
+}
+
+.press {
+  margin: 15px 0 50px 0; /* Espaçamento maior para destacar */
+  color: #e9c46a;
+  font-size: 1.5vw; /* Leve aumento para melhor leitura */
+  letter-spacing: 0.15em;
+  text-shadow: 1.5px 1.5px 0 #423c2f; /* Sombra um pouco mais suave */
+}
+
+.characters {
+  position: relative; /* Para facilitar alinhamento dos personagens */
+  display: flex;
+  gap: 3vw; /* Aumentei o espaçamento entre personagens */
+  align-items: flex-end;
+  justify-content: center;
+  width: 60vw; /* Limita a largura para melhor ajuste */
+}
+
+.character {
+  width: 9vw; /* Personagens um pouco maiores */
+  user-select: none;
+  image-rendering: pixelated;
+  transition: transform 0.3s ease; /* Para animação suave ao passar o mouse */
+}
+
+.character:hover {
+  transform: scale(1.1); /* Leve zoom ao passar o mouse */
+  cursor: pointer;
+}
+
+/* Ajuste das posições absolutas removidas para usar flexbox mais responsivo */
+.bulbasaur, .squirtle, .charmander, .pikachu {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  width: 9vw;
+}
+
+.tree {
+  position: absolute;
+  bottom: 0;
+  width: 16vw;
+  user-select: none;
+  image-rendering: pixelated;
+  z-index: 1; /* Para ficar atrás dos personagens */
+}
+
+.tree.left {
+  left: 0;
+}
+
+.tree.right {
+  right: 0;
+}
+
+.bush {
+  position: absolute;
+  bottom: 5vh;
+  width: 8vw;
+  user-select: none;
+  image-rendering: pixelated;
+  z-index: 1;
+}
+
+.bush.left {
+  left: 15vw;
+}
+
+.bush.right {
+  right: 15vw;
+}
+
+.birds {
+  position: absolute;
+  top: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20vw;
+  z-index: 2;
+}
+
+.bird {
+  width: 3.5vw;
+  user-select: none;
+  image-rendering: pixelated;
+  animation: fly 10s linear infinite;
+}
+
+/* Animação simples para as aves voarem da esquerda para direita */
+@keyframes fly {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(10vw); }
+}
