@@ -14,6 +14,14 @@
         <h1>
             Lista de Manutenções
         </h1>
+
+        <form class="d-flex mb-3" th:action="@{/manutencao/procurar}" method="get">
+            <input class="form-control me-2" type="search" name="titulo" placeholder="Buscar por título">
+            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+        </form>
+
+        <p th:if="${errorA}" class="text-danger" th:text="${errorA}"></p>
+
         <table class="table" th:unless="${#lists.isEmpty(manuts)}">
             <thead>
                 <tr>
@@ -58,6 +66,7 @@
         <p th:if="${#lists.isEmpty(manuts)}">Nenhuma Tarefa Cadastrada</p>
 
         <a th:href="@{manutencao/criar}" class="btn btn-sm btn-primary">Nova Tarefa</a>
+
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

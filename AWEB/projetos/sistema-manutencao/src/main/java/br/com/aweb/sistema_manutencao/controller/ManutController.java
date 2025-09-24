@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,20 +20,18 @@ import br.com.aweb.sistema_manutencao.model.Manut;
 import br.com.aweb.sistema_manutencao.repository.ManutRepository;
 import jakarta.validation.Valid;
 
-
 @Controller
 @RequestMapping("/manutencao")
 public class ManutController {
 
     @Autowired
     ManutRepository manutRepository;
-    
+
     // LISTAR
     @GetMapping
-    public ModelAndView list(){
-        return new ModelAndView("list" , Map.of("manuts" , manutRepository.findAll()));
+    public ModelAndView list() {
+        return new ModelAndView("list", Map.of("manuts", manutRepository.findAll()));
     }
-    
 
     // CRIAR
     @GetMapping("/criar")
@@ -48,7 +47,7 @@ public class ManutController {
         manutRepository.save(manut);
         return "redirect:/manutencao";
     }
-    
+
     // EDITAR
     @GetMapping("/editar/{id}")
     public ModelAndView edit(@PathVariable Long id) {
@@ -69,10 +68,10 @@ public class ManutController {
         return "redirect:/manutencao";
     }
 
-     // DELETAR
+    // DELETAR
     @GetMapping("/deletar/{id}")
     public ModelAndView delete(@PathVariable Long id) {
-                Optional<Manut> manut = manutRepository.findById(id);
+        Optional<Manut> manut = manutRepository.findById(id);
         if (manut.isPresent()) {
             return new ModelAndView("delete", Map.of("manut", manut.get()));
         }
@@ -96,6 +95,20 @@ public class ManutController {
             return "redirect:/manutencao";
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    // BUSCAR POR TÍTULO
+    @GetMapping("/procurar")
+    public ModelAndView search(@RequestParam("titulo") String titulo) {
+        var manuts = manutRepository.findByTituloContainingIgnoreCase(titulo);
+
+        if (manuts.isEmpty()) {
+            return new ModelAndView("list", Map.of(
+                    "manuts", manuts,
+                    "errorA", "Nenhuma manutenção encontrada com o título: " + titulo));
+        }
+
+        return new ModelAndView("list", Map.of("manuts", manuts));
     }
 
 }
