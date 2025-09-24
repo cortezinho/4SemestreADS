@@ -79,7 +79,6 @@ public class ClienteController {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    // atualizar cliente
     @PostMapping("/deletar/{id}")
     public String delete(@Valid Cliente cliente, BindingResult result) {
         clientesServices.Excluir(cliente.getId());

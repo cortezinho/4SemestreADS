@@ -62,5 +62,6 @@ public class ClientesServices {
         if (!optionalCliente.isPresent()) {
             clienteRepository.deleteById(id);
         }
+        clienteRepository.deleteById(id);
     }
 }

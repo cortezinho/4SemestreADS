@@ -54,6 +54,7 @@ public class ProdutosServices {
         if (!optionalProduto.isPresent()) {
             ProdutoRepository.deleteById(id);
         }
+        ProdutoRepository.deleteById(id);
     }
 
 }

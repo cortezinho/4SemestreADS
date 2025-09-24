@@ -44,7 +44,7 @@ public class Cliente {
     private String telefone;
     
     // ENDEREÇO
-    @NotBlank(message = "Nome é obrigatório!")
+    @NotBlank(message = "Endereço é obrigatório!")
     @Column(nullable = false, length = 100)
     private String logradouro;
 
