@@ -17,9 +17,6 @@ import br.com.aweb.sistema_vendas.model.Cliente;
 import br.com.aweb.sistema_vendas.services.ClientesServices;
 import jakarta.validation.Valid;
 
-
-
-
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -29,23 +26,33 @@ public class ClienteController {
 
     // listas clientes
     @GetMapping()
-    public ModelAndView list(){
-        return new ModelAndView("cliente/list" , Map.of("clientes", clientesServices.listarTodos()));
+    public ModelAndView list() {
+        return new ModelAndView("cliente/list", Map.of("clientes", clientesServices.listarTodos()));
     }
 
     // formulario de cadastro
     @GetMapping("/novo")
-    public ModelAndView create(){
-        return new ModelAndView("cliente/form" , Map.of("cliente" , new Cliente()));
+    public ModelAndView create() {
+        return new ModelAndView("cliente/form", Map.of("cliente", new Cliente()));
     }
 
     // salvar clientes
     @PostMapping("/novo")
     public String create(@Valid Cliente cliente, BindingResult result) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "cliente/form";
         }
-        clientesServices.salvar(cliente);
+
+        try {
+            clientesServices.salvar(cliente);
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().contains("CPF")) {
+                result.rejectValue("cpf", "error.cliente", e.getMessage());
+            } else if (e.getMessage().contains("e-mail")) {
+                result.rejectValue("email", "error.cliente", e.getMessage());
+            }
+            return "cliente/form";
+        }
         return "redirect:/clientes";
     }
 
@@ -53,8 +60,8 @@ public class ClienteController {
     @GetMapping("/editar/{id}")
     public ModelAndView edit(@PathVariable Long id) {
         var optionalCliente = clientesServices.buscarPorId(id);
-        if (optionalCliente.isPresent()){
-            return new ModelAndView("cliente/form" , Map.of("cliente" , optionalCliente.get()));
+        if (optionalCliente.isPresent()) {
+            return new ModelAndView("cliente/form", Map.of("cliente", optionalCliente.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
@@ -62,19 +69,29 @@ public class ClienteController {
     // atualizar cliente
     @PostMapping("/editar/{id}")
     public String edit(@Valid Cliente cliente, BindingResult result) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "cliente/form";
         }
-        clientesServices.atualizar(cliente.getId(), cliente);
+
+        try {
+            clientesServices.atualizar(cliente.getId(), cliente);
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().contains("CPF")) {
+                result.rejectValue("cpf", "error.cliente", e.getMessage());
+            } else if (e.getMessage().contains("e-mail")) {
+                result.rejectValue("email", "error.cliente", e.getMessage());
+            }
+            return "cliente/form";
+        }
         return "redirect:/clientes";
     }
-    
+
     // excluir cliente
     @GetMapping("/deletar/{id}")
     public ModelAndView delete(@PathVariable Long id) {
         var optionalCliente = clientesServices.buscarPorId(id);
-        if (optionalCliente.isPresent()){
-            return new ModelAndView("cliente/deletar" , Map.of("cliente" , optionalCliente.get()));
+        if (optionalCliente.isPresent()) {
+            return new ModelAndView("cliente/deletar", Map.of("cliente", optionalCliente.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
@@ -84,6 +101,5 @@ public class ClienteController {
         clientesServices.Excluir(cliente.getId());
         return "redirect:/clientes";
     }
-    
-    
+
 }
