@@ -32,7 +32,7 @@ public class Cliente {
 
     @NotBlank(message = "CPF é obrigatório!")
     @Column(nullable = false, length = 11, unique = true)
-    @Size(min = 11, max = 11, message="CPF deve ter 11 dígitos")
+    @Size(min = 11, max = 11, message="CPF deve ter 11 dígitos!")
     @CPF(message = "CPF inválido")
     private String cpf;
 
@@ -63,7 +63,8 @@ public class Cliente {
     private String cidade;
 
     @NotBlank(message = "Estado é obrigatório!")
-    @Column(nullable = false, length = 100)
+    @Size(min = 2, max = 2, message = "UF deve ter 2 caracteres!" )
+    @Column(nullable = false, length = 2)
     private String uf;
 
     @NotBlank(message = "CEP é obrigatório!")

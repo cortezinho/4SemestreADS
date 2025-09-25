@@ -19,7 +19,14 @@ public class ClientesServices {
     // CREATE
     @Transactional
     public Cliente salvar(Cliente cliente) {
-        return clienteRepository.save(cliente);
+        if (clienteRepository.existsByEmail(cliente.getEmail())){
+            throw new IllegalArgumentException("E-mail já cadastrado");
+        }
+        if (clienteRepository.existsByCpf(cliente.getCpf())){
+            throw new IllegalArgumentException("CPF já cadastrado");
+        }
+        Cliente clienteSalvo = clienteRepository.save(cliente);
+        return clienteSalvo;
     }
 
     // READ
@@ -36,10 +43,25 @@ public class ClientesServices {
     public Cliente atualizar(Long id, Cliente clienteAtualzado) {
         var optionalCliente = buscarPorId(id);
         if (!optionalCliente.isPresent()) {
-            throw new IllegalArgumentException("Produto não encotrado.");
+            throw new IllegalArgumentException("Cliente não encotrado.");
         }
         var clienteExistente = optionalCliente.get();
 
+        // valida email se alterado
+        if (!clienteExistente.getEmail().equals(clienteAtualzado.getEmail())){
+            if (clienteRepository.existsByEmail((clienteAtualzado.getEmail()))){
+                throw new IllegalArgumentException("E-mail já cadastrado.");
+            }
+        }
+
+        // valida cpf se alterado
+        if (!clienteExistente.getCpf().equals(clienteAtualzado.getCpf())){
+            if (clienteRepository.existsByCpf((clienteAtualzado.getCpf()))){
+                throw new IllegalArgumentException("CPF já cadastrado.");
+            }
+        }
+
+        // atualiza os campos
         clienteExistente.setNome(clienteAtualzado.getNome());
         clienteExistente.setCpf(clienteAtualzado.getCpf());
         clienteExistente.setEmail(clienteAtualzado.getEmail());
@@ -52,7 +74,8 @@ public class ClientesServices {
         clienteExistente.setUf(clienteAtualzado.getUf());
         clienteExistente.setCep(clienteAtualzado.getCep());
 
-        return clienteRepository.save(clienteExistente);
+        Cliente clienteSalvo = clienteRepository.save(clienteExistente);
+        return clienteSalvo;
     }
 
     // DELETE
