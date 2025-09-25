@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 
-// Aqui você pode trocar as URLs das imagens, coloque URLs de imagens que quiser
 const images = {
   bulbasaur: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
   squirtle: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
@@ -13,11 +12,11 @@ const images = {
 
 function App() {
   return (
-    <div className="container" style={{ backgroundImage: `url(${images.background})` }}>
+    <div className="container">
       <h1 className="title">DESCUBRA<br />SEU<br />CURSO</h1>
       <p className="press">PRESS START</p>
 
-      <div className="characters">
+      <div className="pokemons">
         <img
           src={images.bulbasaur}
           alt="bulbasaur"
@@ -42,13 +41,14 @@ function App() {
         <img src={images.zubat} alt="zubat" className="zubat" draggable={false} />
       </div>
 
-      {/* Squirtle fixo no canto inferior esquerdo */}
-      <img
+      <div className="pokemons">
+        <img
         src={images.squirtle}
         alt="squirtle"
         className="character squirtle flip-right"
         draggable={false}
       />
+      </div>
     </div>
   );
 }
