@@ -7,29 +7,13 @@ const images = {
   squirtle: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
   charmander: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
   pikachu: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-  // birdBlue: "https://cdn.iconscout.com/icon/free/png-256/bird-1046-433419.png",
-  // birdYellow: "https://cdn.iconscout.com/icon/free/png-256/yellow-bird-1605.png",
-  // treeLeft: "https://cdn-icons-png.flaticon.com/512/427/427735.png",
-  // treeRight: "https://cdn-icons-png.flaticon.com/512/427/427744.png",
-  // bush: "https://cdn-icons-png.flaticon.com/512/427/427737.png",
-  background: "./assets/img/fundoTelaInicial.png",
+  zubat: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png",
 };
+
 
 function App() {
   return (
     <div className="container" style={{ backgroundImage: `url(${images.background})` }}>
-      <img
-        src={images.treeLeft}
-        alt="tree left"
-        className="tree left"
-        draggable={false}
-      />
-      <img
-        src={images.treeRight}
-        alt="tree right"
-        className="tree right"
-        draggable={false}
-      />
       <h1 className="title">DESCUBRA<br />SEU<br />CURSO</h1>
       <p className="press">PRESS START</p>
 
@@ -37,46 +21,34 @@ function App() {
         <img
           src={images.bulbasaur}
           alt="bulbasaur"
-          className="character bulbasaur"
-          draggable={false}
-        />
-        <img
-          src={images.squirtle}
-          alt="squirtle"
-          className="character squirtle"
+          className="bulbasaur flip-right"
           draggable={false}
         />
         <img
           src={images.charmander}
           alt="charmander"
-          className="character charmander"
+          className="charmander flip-right"
           draggable={false}
         />
         <img
           src={images.pikachu}
           alt="pikachu"
-          className="character pikachu"
+          className="pikachu"
           draggable={false}
         />
       </div>
 
-      <div className="birds">
-        <img
-          src={images.birdBlue}
-          alt="bird blue"
-          className="bird blue"
-          draggable={false}
-        />
-        <img
-          src={images.birdYellow}
-          alt="bird yellow"
-          className="bird yellow"
-          draggable={false}
-        />
+      <div className="zubats">
+        <img src={images.zubat} alt="zubat" className="zubat" draggable={false} />
       </div>
 
-      <img src={images.bush} alt="bush" className="bush left" draggable={false} />
-      <img src={images.bush} alt="bush" className="bush right" draggable={false} />
+      {/* Squirtle fixo no canto inferior esquerdo */}
+      <img
+        src={images.squirtle}
+        alt="squirtle"
+        className="character squirtle flip-right"
+        draggable={false}
+      />
     </div>
   );
 }
