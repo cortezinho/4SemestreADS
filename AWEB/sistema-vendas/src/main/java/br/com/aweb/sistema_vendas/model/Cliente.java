@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,13 +31,14 @@ public class Cliente {
     private String nome;
 
     @NotBlank(message = "CPF é obrigatório!")
-    @Column(nullable = false, length = 11)
-    @CPF
+    @Column(nullable = false, length = 11, unique = true)
+    @Size(min = 11, max = 11, message="CPF deve ter 11 dígitos")
+    @CPF(message = "CPF inválido")
     private String cpf;
 
     @NotBlank(message = "EMAIL é obrigatório!")
     @Column(nullable = false)
-    @Email
+    @Email(message = "E-mail inválido")
     private String email;
 
     @NotBlank(message = "Número de telefone é obrigatório!")
