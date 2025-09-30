@@ -1,0 +1,280 @@
+/* Fonte retrô */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Reset + fundo padrão da tela inicial */
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url('../assets/img/fundoTelaInicial.png');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* ==================== */
+/* ESTILOS TELA INICIAL */
+/* ==================== */
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer; /* clique para iniciar */
+}
+
+.title {
+  color: #000;
+  font-size: 4vw;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+  text-shadow: 6px 6px 0 #00000034;
+  letter-spacing: 0.05em;
+}
+
+.press {
+  margin: 15px 0 50px 0;
+  color: #e9c46a;
+  font-size: 1.5vw;
+  letter-spacing: 0.15em;
+  text-shadow: 2px 2px 0 #423c2f, 4px 4px 0 #000;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pokemons {
+  position: relative;
+  display: flex;
+  gap: 3vw;
+  align-items: flex-end;
+  justify-content: center;
+  width: 60vw;
+}
+
+.character,
+.bulbasaur {
+  position: absolute;   /* mantém fora do fluxo normal */
+  bottom: 310px;            /* encosta na parte inferior da tela */
+  left: 300px;              /* encosta na lateral esquerda */
+  width: 12vw;          /* mantém o tamanho grande */
+  user-select: none;
+  image-rendering: pixelated;
+  transition: transform 0.3s ease;
+}
+
+.charmander {
+  position: absolute;   /* mantém fora do fluxo normal */
+  bottom: 50px;            /* encosta na parte inferior da tela */
+  left: 700px;              /* encosta na lateral esquerda */
+  width: 15vw;          /* mantém o tamanho grande */
+  user-select: none;
+  image-rendering: pixelated;
+  transition: transform 0.3s ease;
+}
+
+.pikachu {
+  position: absolute;   /* mantém fora do fluxo normal */
+  bottom: 50px;            /* encosta na parte inferior da tela */
+  left: 870px;              /* encosta na lateral esquerda */
+  width: 15vw;          /* mantém o tamanho grande */
+  user-select: none;
+  image-rendering: pixelated;
+  transition: transform 0.3s ease;
+}
+
+
+.squirtle {
+  position: absolute;   /* mantém fora do fluxo normal */
+  bottom: -35px;            /* encosta na parte inferior da tela */
+  left: 0;              /* encosta na lateral esquerda */
+  width: 20vw;          /* mantém o tamanho grande */
+  user-select: none;
+  image-rendering: pixelated;
+  transition: transform 0.3s ease;
+}
+
+.bulbasaur:hover,
+.charmander:hover,
+.pikachu:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.flip-right {
+  transform: scaleX(-1);
+}
+.flip-right:hover {
+  transform: scaleX(-1) scale(1.1);
+}
+
+.zubats {
+  position: absolute;
+  top: 3vh;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.zubat {
+  width: 3.5vw;
+  user-select: none;
+  image-rendering: pixelated;
+  animation: fly 30s linear infinite;
+}
+
+@keyframes fly {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(0); }
+}
+
+/* ==================== */
+/* ESTILOS QUIZ & RESULTADO */
+/* ==================== */
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  image-rendering: pixelated; 
+}
+
+/* Tela de resultado */
+.result-screen {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.result-content {
+  background-color: rgba(25, 25, 45, 0.85);
+  padding: 30px 40px;
+  border-radius: 15px;
+  color: white;
+  border: 6px solid #a4a4a4;
+  box-shadow: 0 0 0 5px #3c3c3c;
+  margin-bottom: 200px;
+}
+
+.result-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #f0f0f0;
+}
+
+.result-content p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.winner-course {
+  font-size: 2rem;
+  color: #FFD700;
+  margin-top: 10px;
+  text-shadow: 3px 3px #000;
+  line-height: 1.2;
+}
+
+.restart-button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 4px solid #3c3c3c;
+  border-radius: 8px;
+  z-index: 10;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+
+/* Estilo base */
+.word {
+  display: inline-block;
+  font-size: 4vw;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 0;
+  width: 0; /* começa invisível */
+  vertical-align: bottom;
+}
+
+/* Digitação */
+@keyframes typing {
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
+}
+
+/* Cursor piscando */
+@keyframes blink-caret {
+  from, to { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Aplica digitação + cursor temporário */
+.word::after {
+  content: "";
+  display: inline-block;
+  width: 0.15em;
+  height: 1em;
+  margin-left: 2px;
+  background: black;
+}
+
+/* Primeira palavra */
+.delay1 {
+  animation: typing 1.5s steps(20, end) forwards;
+}
+.delay1::after {
+  animation: blink-caret 0.75s step-end 2 forwards; /* cursor some após 2 piscadas */
+  animation-delay: 0s;
+}
+
+/* Segunda palavra */
+.delay2 {
+  animation: typing 1s steps(10, end) forwards;
+  animation-delay: 1.6s;
+}
+.delay2::after {
+  animation: blink-caret 0.75s step-end 2 forwards;
+  animation-delay: 1.6s;
+}
+
+/* Terceira palavra (última) */
+.delay3 {
+  animation: typing 1.5s steps(15, end) forwards;
+  animation-delay: 2.8s;
+}
+.delay3::after {
+  content: none; /* cursor nunca aparece na última palavra */
+}
+
+
+
+
+
+
