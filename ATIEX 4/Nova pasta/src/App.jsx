@@ -1,10 +1,11 @@
+// src/App.jsx
 import React, { useState, useEffect } from 'react';
 import DialogueBox from './components/DialogueBox';
 
 // fundos
 import fundoInicial from './assets/img/fundoTelaInicial.png';
 import fundoC from './assets/img/fundoC.png';
-// import fundoQuiz from './assets/img/fundoQuiz.png';     // opcional, pode usar o mesmo do intro
+// import fundoQuiz from './assets/img/fundoQuiz.png';     // opcional, pode usar fundoC
 // import fundoResultado from './assets/img/fundoResultado.png'; // opcional
 
 import './styles/App.css';
@@ -22,7 +23,7 @@ const images = {
 const allQuestions = [
   { question: 'Você gosta de entender como funcionam máquinas e equipamentos?', course: 'Mecatrônica' },
   { question: 'Se interessa por automação e robótica?', course: 'Mecatrônica' },
-  { question: 'Gosta de colocar a mão na massa para montar ou consertar algo?', course: 'Mecatrônica' },
+  { question: 'Gosta da mão na massa para montar ou consertar algo?', course: 'Mecatrônica' },
   { question: 'Ficaria satisfeito em projetar sistemas que unem mecânica, eletrônica e informática?', course: 'Mecatrônica' },
   { question: 'Se sente atraído por indústrias e ambientes tecnológicos?', course: 'Mecatrônica' },
   { question: 'Você gosta de resolver problemas lógicos e desafios de raciocínio?', course: 'ADS' },
@@ -67,36 +68,25 @@ function App() {
 
   const handleChoice = (choice) => {
     if (gameState === 'intro') {
-      if (choice === 'Sim') {
-        startQuiz();
-      } else {
-        handleRestart();
-      }
+      if (choice === 'Sim') startQuiz();
+      else handleRestart();
       return;
     }
 
     if (gameState === 'quiz') {
       if (choice === 'Sim') {
         const currentCourse = questions[currentQuestionIndex].course;
-        setScores(prevScores => ({
-          ...prevScores,
-          [currentCourse]: prevScores[currentCourse] + 1,
-        }));
+        setScores(prev => ({ ...prev, [currentCourse]: prev[currentCourse] + 1 }));
       }
-
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(prev => prev + 1);
-      } else {
-        setGameState('result');
-      }
+      if (currentQuestionIndex < questions.length - 1) setCurrentQuestionIndex(prev => prev + 1);
+      else setGameState('result');
     }
   };
 
+  // Avança diálogo só na fase 'intro' e apenas se não houver choices
   const handleDialogueAdvance = () => {
     if (gameState === 'intro' && !introScript[scriptIndex].choices) {
-      if (scriptIndex < introScript.length - 1) {
-        setScriptIndex(prev => prev + 1);
-      }
+      if (scriptIndex < introScript.length - 1) setScriptIndex(prev => prev + 1);
     }
   };
 
@@ -112,7 +102,7 @@ function App() {
     setScores({ Mecatrônica: 0, ADS: 0 });
   };
 
-  // current dialogue (intro ou pergunta)
+  // Current dialogue (intro ou pergunta)
   const currentDialogue = gameState === 'intro'
     ? introScript[scriptIndex]
     : { text: questions[currentQuestionIndex]?.question, choices: ['Sim', 'Não'] };
