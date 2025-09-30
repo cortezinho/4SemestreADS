@@ -8,11 +8,30 @@ html,
   margin: 0;
   padding: 0;
   height: 100%;
+  /* background-image: url('../assets/img/fundoTelaInicial.png'); */
+  background-size: cover;
+  background-position: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Fundo tela inicial */
+.container.start {
+  height: 100vh;
   background-image: url('../assets/img/fundoTelaInicial.png');
   background-size: cover;
   background-position: center;
   font-family: 'Press Start 2P', cursive;
 }
+
+/* Fundo tela de perguntas */
+.container.intro {
+  height: 100vh;
+  background-image: url('../assets/img/fundoC.png');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
 
 /* ==================== */
 /* ESTILOS TELA INICIAL */

@@ -1,6 +1,12 @@
-// App.jsx (versão integrada)
 import React, { useState, useEffect } from 'react';
 import DialogueBox from './components/DialogueBox';
+
+// fundos
+import fundoInicial from './assets/img/fundoTelaInicial.png';
+import fundoC from './assets/img/fundoC.png';
+// import fundoQuiz from './assets/img/fundoQuiz.png';     // opcional, pode usar o mesmo do intro
+// import fundoResultado from './assets/img/fundoResultado.png'; // opcional
+
 import './styles/App.css';
 
 // Imagens da tela inicial
@@ -42,6 +48,17 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [scores, setScores] = useState({ Mecatrônica: 0, ADS: 0 });
+
+  // Estado do fundo
+  const [backgroundImg, setBackgroundImg] = useState(fundoInicial);
+
+  // Troca o fundo automaticamente quando o estado mudar
+  useEffect(() => {
+    if (gameState === 'start') setBackgroundImg(fundoInicial);
+    if (gameState === 'intro') setBackgroundImg(fundoC);
+    if (gameState === 'quiz') setBackgroundImg(fundoQuiz);
+    if (gameState === 'result') setBackgroundImg(fundoResultado);
+  }, [gameState]);
 
   const startQuiz = () => {
     setQuestions(shuffleArray([...allQuestions]));
@@ -88,16 +105,6 @@ function App() {
     return () => window.removeEventListener('click', handleDialogueAdvance);
   }, [gameState, scriptIndex]);
 
-  useEffect(() => {
-    // Intervalo que recarrega a página a cada 10 segundos
-    const interval = setInterval(() => {
-      window.location.reload();
-    }, 60000); // 10000ms = 10 segundos
-
-    return () => clearInterval(interval); // limpa o intervalo quando o componente desmonta
-  }, []);
-
-
   const handleRestart = () => {
     setGameState('start');
     setScriptIndex(0);
@@ -105,73 +112,75 @@ function App() {
     setScores({ Mecatrônica: 0, ADS: 0 });
   };
 
-  // Tela de Início (com digitação palavra por palavra sem cursor sobrando)
-  if (gameState === 'start') {
-    return (
-      <div className="container" onClick={() => setGameState('intro')}>
-        <h1 className="title">
-          <span className="word delay1">DESCUBRA</span><br />
-          <span className="word delay2">SEU</span><br />
-          <span className="word delay3 end">CURSO</span>
-        </h1>
-        <p className="press">PRESS START</p>
-
-        <img src={images.bulbasaur} alt="bulbasaur" className="bulbasaur flip-right" draggable={false} />
-        <img src={images.charmander} alt="charmander" className="charmander flip-right" draggable={false} />
-        <img src={images.pikachu} alt="pikachu" className="pikachu" draggable={false} />
-
-        <div className="zubats">
-          <img src={images.zubat} alt="zubat" className="zubat" draggable={false} />
-        </div>
-
-        <img src={images.squirtle} alt="squirtle" className="character squirtle flip-right" draggable={false} />
-      </div>
-    );
-  }
-
-
-
-
-
-  // 2. Tela de Resultado
-  if (gameState === 'result') {
-    let winner = 'Indefinido';
-    let winnerMessage = `Parabéns! Com base nas suas respostas, este curso parece ser uma ótima escolha para você!`;
-
-    if (scores.ADS > scores.Mecatrônica) {
-      winner = 'Análise e Desenvolvimento de Sistemas';
-    } else if (scores.Mecatrônica > scores.ADS) {
-      winner = 'Tecnólogo em Mecatrônica Industrial';
-    } else {
-      winner = 'Ambos os cursos!';
-      winnerMessage = 'Você se saiu bem em ambas as áreas! Recomendamos pesquisar um pouco mais sobre os dois cursos.'
-    }
-
-    return (
-      <div className="app-container result-screen">
-        <div className="result-content">
-          <h2>Resultado Final</h2>
-          <p>Seu curso recomendado é:</p>
-          <h1 className="winner-course">{winner}</h1>
-        </div>
-        <DialogueBox text={winnerMessage} />
-        <button className="restart-button" onClick={handleRestart}>Fazer o teste novamente</button>
-      </div>
-    );
-  }
-
-  // 3. Introdução e Quiz
+  // current dialogue (intro ou pergunta)
   const currentDialogue = gameState === 'intro'
     ? introScript[scriptIndex]
     : { text: questions[currentQuestionIndex]?.question, choices: ['Sim', 'Não'] };
 
   return (
-    <div className="app-container">
-      <DialogueBox
-        text={currentDialogue.text}
-        choices={currentDialogue.choices}
-        onChoice={handleChoice}
-      />
+    <div
+      className="app-wrapper"
+      style={{
+        backgroundImage: `url(${backgroundImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh'
+      }}
+    >
+      {/* TELA DE INÍCIO */}
+      {gameState === 'start' && (
+        <div
+          className="container start"
+          onClick={() => setGameState('intro')}
+        >
+          <h1 className="title">
+            <span className="word delay1">DESCUBRA</span><br />
+            <span className="word delay2">SEU</span><br />
+            <span className="word delay3 end">CURSO</span>
+          </h1>
+          <p className="press">PRESS START</p>
+
+          <img src={images.bulbasaur} alt="bulbasaur" className="bulbasaur flip-right" draggable={false} />
+          <img src={images.charmander} alt="charmander" className="charmander flip-right" draggable={false} />
+          <img src={images.pikachu} alt="pikachu" className="pikachu" draggable={false} />
+
+          <div className="zubats">
+            <img src={images.zubat} alt="zubat" className="zubat" draggable={false} />
+          </div>
+
+          <img src={images.squirtle} alt="squirtle" className="character squirtle flip-right" draggable={false} />
+        </div>
+      )}
+
+      {/* INTRO E QUIZ */}
+      {(gameState === 'intro' || gameState === 'quiz') && (
+        <div className="app-container">
+          <DialogueBox
+            text={currentDialogue.text}
+            choices={currentDialogue.choices}
+            onChoice={handleChoice}
+          />
+        </div>
+      )}
+
+      {/* RESULTADO */}
+      {gameState === 'result' && (
+        <div className="app-container result-screen">
+          <div className="result-content">
+            <h2>Resultado Final</h2>
+            <p>Seu curso recomendado é:</p>
+            <h1 className="winner-course">
+              {scores.ADS > scores.Mecatrônica
+                ? 'Análise e Desenvolvimento de Sistemas'
+                : scores.Mecatrônica > scores.ADS
+                  ? 'Tecnólogo em Mecatrônica Industrial'
+                  : 'Ambos os cursos!'}
+            </h1>
+          </div>
+          <DialogueBox text={`Parabéns! Com base nas suas respostas, este curso parece ser uma ótima escolha para você!`} />
+          <button className="restart-button" onClick={handleRestart}>Fazer o teste novamente</button>
+        </div>
+      )}
     </div>
   );
 }
