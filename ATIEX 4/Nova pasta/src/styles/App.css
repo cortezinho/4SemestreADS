@@ -149,6 +149,7 @@ img {
   line-height: 1.5;
   color: white;
   animation: fadeIn 0.5s ease;
+  top: 1000px;
 }
 
 .dialogue-choices {
