@@ -1,167 +1,229 @@
-/* Reset de estilos padrão */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Garantir que o corpo ocupe toda a altura da tela */
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
-/* Adicionar a imagem de fundo */
+/* --- Estilos Gerais e de Layout --- */
 body {
-  font-family: Arial, sans-serif;
-  background-image: url('./assets/images/bookscape.png'); /* Caminho para a imagem */
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('./assets/images/bookscape.png');
   background-size: cover; /* Faz a imagem cobrir toda a tela */
   background-position: center; /* Centraliza a imagem */
-  background-repeat: no-repeat; /* Não repete a imagem */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
 }
 
-/* Contêiner principal (flexbox) ocupa 100% da altura */
 .app {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  padding: 20px;
+  gap: 40px; /* Aumenta o espaçamento entre as colunas */
+  padding: 40px; /* Aumenta o preenchimento do contêiner principal */
   width: 100%;
-  height: 100%;
-  flex-wrap: wrap; /* Permite que os itens se ajustem em telas menores */
+  max-width: 1400px; /* Aumenta a largura máxima para seções maiores */
 }
 
-/* Seções de Perfil, Livros e Meus Livros */
 .profile-section,
 .books-section,
 .my-books-section {
-  background-color: rgba(255, 255, 255, 0.8);  /* Fundo branco com opacidade */
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 30px; /* Aumentar o padding para que o conteúdo fique mais espaçado */
-  width: 30vw;  /* Aumenta a largura das seções */
-  height: 90vh;  /* Aumenta a altura das seções */
-  min-height: 400px;  /* Definir uma altura mínima */
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px; /* Aumenta o preenchimento interno dos cards */
+  flex: 1;
+  height: 80vh; /* Define uma altura para os componentes */
+  width:  90vw; /* Define uma largura para os componentes */
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* Centraliza o conteúdo verticalmente */
-  align-items: center;      /* Centraliza o conteúdo horizontalmente */
 }
 
-/* Estilos adicionais para tornar o layout mais confortável */
-.profile-section, .books-section, .my-books-section {
-  flex-grow: 1;
+/* --- Estilos da Seção de Perfil --- */
+.profile-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Mantém o botão "Sair" na parte inferior */
 }
 
-/* Estilo da imagem de perfil usando background */
-.profile-image {
-  width: 100%;         /* A largura será 100% da largura da seção */
-  height: 100%;        /* A altura será 100% da altura da seção */
-  border-radius: 50%;  /* Torna a imagem redonda */
-  background-image: url('./assets/images/perfil.png'); /* Caminho para a imagem de perfil */
-  background-size: cover; /* A imagem cobre a área da div sem distorcer */
-  background-position: center; /* Centraliza a imagem dentro da div */
-  margin-bottom: 15px;    /* Espaço abaixo da imagem */
+.profile-image-container {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #e3f2fd;
+  /* Oculta qualquer parte da imagem que possa vazar do círculo */
+  overflow: hidden; 
+  /* Centraliza o conteúdo dentro do contêiner */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-/* Título e texto do perfil */
-h2 {
-  font-size: 18px;
+.profile-image-container img {
+  width: 100%;
+  height: 100%;
+  display: block; /* Garante que a imagem se comporte como um bloco */
+  border-radius: 50%; /* Faz a imagem ser redonda */
+  object-fit: cover; /* Faz a imagem preencher o espaço, cortando as laterais se necessário */
+}
+
+.profile-info {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.profile-info h2 {
+  font-size: 24px;
   margin-bottom: 5px;
 }
 
-p {
+.profile-info p {
   font-size: 14px;
   color: #666;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
-/* Botão de logout */
 .logout-btn {
   background-color: #007bff;
   color: white;
-  padding: 10px;
-  width: 100%;
-  border-radius: 5px;
+  padding: 12px;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s;
 }
 
 .logout-btn:hover {
   background-color: #0056b3;
 }
 
-/* Estilos para a lista de livros */
-.books-list input {
+/* --- Estilos da Seção de Livros --- */
+.books-section .search-input {
   width: 100%;
-  padding: 10px;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+.books-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.books-list {
+  flex: 1; /* Permite que a lista de livros se expanda para ocupar o espaço disponível */
+  overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando o conteúdo excede o contêiner */
 }
 
 .book-item {
   display: flex;
+  background-color: #e3f2fd; /* Cor de fundo do item de livro */
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
   justify-content: space-between;
-  margin: 10px 0;
+  align-items: center;
+}
+
+.book-item:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .book-title {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  color: #333;
 }
 
 .book-author {
-  color: #777;
   font-size: 14px;
+  color: #777;
 }
 
-.book-item:hover {
-  background-color: #f9f9f9;
-  cursor: pointer;
-}
-
-/* Estilos para a seção "Meus livros" */
+/* --- Estilos da Seção "Meus Livros" --- */
 .tab-container {
   display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #f9f9f9;
 }
 
 .tab-btn {
-  background-color: #f0f0f0;
-  padding: 10px;
-  width: 100px;
-  cursor: pointer;
-  border-radius: 5px;
+  flex: 1;
+  padding: 12px;
   border: none;
-  text-align: center;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  color: #666;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .tab-btn.active {
-  background-color: #007bff;
-  color: white;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-.tab-btn:hover {
-  background-color: #ddd;
+.my-books-list {
+  flex: 1; /* Permite que a lista de "Meus Livros" se expanda */
+  overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
 }
 
-.books-list ul {
-  list-style-type: none;
+.my-books-list .book-item {
+  background-color: #fcfcfc; /* Fundo branco para os itens da lista */
 }
 
-.books-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
+/* Cores dos itens da lista de "Meus Livros" */
+.my-books-list .book-item:nth-child(1) {
+  background-color: #ffe0b2; /* Laranja claro */
 }
 
-.books-list li + li {
-  border-top: 1px solid #f0f0f0;
+.my-books-list .book-item:nth-child(2) {
+  background-color: #b3e5fc; /* Azul claro */
+}
+
+.my-books-list .book-item:nth-child(3) {
+  background-color: #e1f5fe; /* Azul mais claro */
+}
+
+.my-books-list .book-item:nth-child(4) {
+  background-color: #c8e6c9; /* Verde claro */
+}
+
+.my-books-list .book-title {
+  font-weight: bold;
+}
+
+.my-books-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
