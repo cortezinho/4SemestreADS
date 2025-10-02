@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from '../Modal'; // Importa o novo componente
+import Modal from '../Modal';
 
 function BooksList({ books, onAddBook }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,7 +18,8 @@ function BooksList({ books, onAddBook }) {
   };
 
   const handleConfirm = () => {
-    onAddBook({ ...selectedBook, dueDate }); // Adiciona a data ao objeto do livro
+    // Garante que o objeto do livro tenha a propriedade 'dueDate' antes de ser enviado
+    onAddBook({ ...selectedBook, dueDate });
     setShowModal(false);
     setDueDate('');
     setSelectedBook(null);

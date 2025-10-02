@@ -32,13 +32,12 @@ function App() {
 
   const [myBooks, setMyBooks] = useState([]);
 
-  // Função para adicionar livro em 'Meus Livros'
   const addBookToMyList = (book) => {
+    // A função já recebe o objeto 'book' completo, com a 'dueDate'
     setBooks(books.filter(b => b.title !== book.title));
     setMyBooks([...myBooks, book]);
   };
 
-  // Função para remover livro de 'Meus Livros'
   const removeBookFromMyList = (book) => {
     setMyBooks(myBooks.filter(b => b.title !== book.title));
     setBooks([...books, book]);

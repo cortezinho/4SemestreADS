@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
+import Modal from '../Modal'; // Importa o componente Modal
 
 function MyBooks({ myBooks, onRemoveBook }) {
   const [searchTerm, setSearchTerm] = useState('');
-  
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
   const filteredBooksRead = myBooks.filter(book =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     book.author.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleBookClick = (book) => {
-    const confirmRemove = window.confirm(`Deseja remover "${book.title}" da sua lista?`);
-    if (confirmRemove) {
-      onRemoveBook(book);
-    }
+    setSelectedBook(book);
+    setShowModal(true);
+  };
+
+  const handleConfirm = () => {
+    onRemoveBook(selectedBook);
+    setShowModal(false);
+    setSelectedBook(null);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+    setSelectedBook(null);
   };
 
   return (
@@ -37,6 +49,14 @@ function MyBooks({ myBooks, onRemoveBook }) {
           ))}
         </ul>
       </div>
+
+      <Modal
+        show={showModal}
+        title="Devolver Livro"
+        message={`Data de devolução: ${selectedBook?.dueDate || 'Não especificada'}. Deseja devolver o livro agora?`}
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
     </div>
   );
 }
