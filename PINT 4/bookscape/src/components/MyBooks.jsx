@@ -1,5 +1,6 @@
+// ... outros imports
 import React, { useState } from 'react';
-import Modal from '../Modal'; // Importa o componente Modal
+import Modal from '../Modal';
 
 function MyBooks({ myBooks, onRemoveBook }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,7 +41,12 @@ function MyBooks({ myBooks, onRemoveBook }) {
       <div className="my-books-list">
         <ul>
           {filteredBooksRead.map((book, index) => (
-            <li key={index} className="book-item" onClick={() => handleBookClick(book)}>
+            <li 
+              key={index} 
+              className="book-item" 
+              onClick={() => handleBookClick(book)}
+              style={{ backgroundColor: book.color }} // <--- Usa a cor salva aqui
+            >
               <div className="book-info">
                 <span className="book-title">{book.title}</span>
                 <span className="book-author">{book.author}</span>

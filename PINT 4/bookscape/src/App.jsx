@@ -1,8 +1,19 @@
+// ...outros imports
 import React, { useState } from 'react';
 import './App.css';
 import Profile from './components/Profile';
 import BooksList from './components/BookList';
 import MyBooks from './components/MyBooks';
+
+const bookColors = [
+  '#ffe0b2', // Laranja claro
+  '#b3e5fc', // Azul claro
+  '#e1f5fe', // Azul mais claro
+  '#c8e6c9', // Verde claro
+  '#ffcdd2', // Vermelho claro
+  '#f0f4c3', // Amarelo claro
+  '#d1c4e9', // Roxo claro
+];
 
 function App() {
   const [books, setBooks] = useState([
@@ -32,10 +43,15 @@ function App() {
 
   const [myBooks, setMyBooks] = useState([]);
 
+  const getRandomColor = () => {
+    return bookColors[Math.floor(Math.random() * bookColors.length)];
+  };
+
   const addBookToMyList = (book) => {
-    // A função já recebe o objeto 'book' completo, com a 'dueDate'
+    // Adiciona uma propriedade 'color' com um valor aleatório
+    const bookWithColor = { ...book, color: getRandomColor() };
     setBooks(books.filter(b => b.title !== book.title));
-    setMyBooks([...myBooks, book]);
+    setMyBooks([...myBooks, bookWithColor]);
   };
 
   const removeBookFromMyList = (book) => {
