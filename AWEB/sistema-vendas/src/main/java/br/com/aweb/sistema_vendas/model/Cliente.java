@@ -1,5 +1,8 @@
 package br.com.aweb.sistema_vendas.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.persistence.Column;
@@ -7,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -27,12 +31,12 @@ public class Cliente {
     private Long id;
 
     @NotBlank(message = "Nome é obrigatório!")
-    @Column(nullable = false, length = 100)  //validação do banco de dados
+    @Column(nullable = false, length = 100) // validação do banco de dados
     private String nome;
 
     @NotBlank(message = "CPF é obrigatório!")
     @Column(nullable = false, length = 11, unique = true)
-    @Size(min = 11, max = 11, message="CPF deve ter 11 dígitos!")
+    @Size(min = 11, max = 11, message = "CPF deve ter 11 dígitos!")
     @CPF(message = "CPF inválido")
     private String cpf;
 
@@ -44,7 +48,7 @@ public class Cliente {
     @NotBlank(message = "Número de telefone é obrigatório!")
     @Column(nullable = false)
     private String telefone;
-    
+
     // ENDEREÇO
     @NotBlank(message = "Endereço é obrigatório!")
     @Column(nullable = false, length = 100)
@@ -63,12 +67,16 @@ public class Cliente {
     private String cidade;
 
     @NotBlank(message = "Estado é obrigatório!")
-    @Size(min = 2, max = 2, message = "UF deve ter 2 caracteres!" )
+    @Size(min = 2, max = 2, message = "UF deve ter 2 caracteres!")
     @Column(nullable = false, length = 2)
     private String uf;
 
     @NotBlank(message = "CEP é obrigatório!")
     @Column(nullable = false, length = 100)
     private String cep;
+
+    // relacionamento com Pedido (apenas para mapeamento)
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedido = new ArrayList<>();
 
 }
