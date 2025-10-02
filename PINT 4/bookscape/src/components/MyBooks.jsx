@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
-function MyBooks() {
+function MyBooks({ myBooks, onRemoveBook }) {
   const [searchTerm, setSearchTerm] = useState('');
   
-  const allBooksRead = [
-    { title: '1984', author: 'George Orwell' },
-    { title: 'Dom Casmurro', author: 'Machado de Assis' },
-    { title: 'O Pequeno Príncipe', author: 'Antoine de Saint-Exupéry' },
-    { title: 'O Senhor dos Anéis', author: 'J.R.R. Tolkien' },
-  ];
-
-  const filteredBooksRead = allBooksRead.filter(book =>
+  const filteredBooksRead = myBooks.filter(book =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     book.author.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleBookClick = (book) => {
+    const confirmRemove = window.confirm(`Deseja remover "${book.title}" da sua lista?`);
+    if (confirmRemove) {
+      onRemoveBook(book);
+    }
+  };
 
   return (
     <div className="my-books-section">
@@ -28,7 +28,7 @@ function MyBooks() {
       <div className="my-books-list">
         <ul>
           {filteredBooksRead.map((book, index) => (
-            <li key={index} className="book-item">
+            <li key={index} className="book-item" onClick={() => handleBookClick(book)}>
               <div className="book-info">
                 <span className="book-title">{book.title}</span>
                 <span className="book-author">{book.author}</span>

@@ -1,15 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Profile from './components/Profile';
 import BooksList from './components/BookList';
 import MyBooks from './components/MyBooks';
 
 function App() {
+  const [books, setBooks] = useState([
+    { title: 'Dom Casmurro', author: 'Machado de Assis' },
+    { title: '1984', author: 'George Orwell' },
+    { title: 'O Senhor dos Anéis', author: 'J.R.R. Tolkien' },
+    { title: 'O Pequeno Príncipe', author: 'Antoine de Saint-Exupéry' },
+    { title: 'A Metamorfose', author: 'Franz Kafka' },
+    { title: 'Crime e Castigo', author: 'Fiódor Dostoiévski' },
+    { title: 'O Apanhador no Campo de Centeio', author: 'J.D. Salinger' },
+    { title: 'Grande Sertão: Veredas', author: 'João Guimarães Rosa' },
+    { title: 'Memórias Póstumas de Brás Cubas', author: 'Machado de Assis' },
+    { title: 'O Processo', author: 'Franz Kafka' },
+    { title: 'O Morro dos Ventos Uivantes', author: 'Emily Brontë' },
+    { title: 'Capitães da Areia', author: 'Jorge Amado' },
+    { title: 'O Sol é Para Todos', author: 'Harper Lee' },
+    { title: 'Cem Anos de Solidão', author: 'Gabriel García Márquez' },
+    { title: 'A Revolução dos Bichos', author: 'George Orwell' },
+    { title: 'Fahrenheit 451', author: 'Ray Bradbury' },
+    { title: 'Ulisses', author: 'James Joyce' },
+    { title: 'A Hora da Estrela', author: 'Clarice Lispector' },
+    { title: 'Hamlet', author: 'William Shakespeare' },
+    { title: 'Vidas Secas', author: 'Graciliano Ramos' },
+    { title: 'O Retrato de Dorian Gray', author: 'Oscar Wilde' },
+    { title: 'Orgulho e Preconceito', author: 'Jane Austen' },
+  ]);
+
+  const [myBooks, setMyBooks] = useState([]);
+
+  // Função para adicionar livro em 'Meus Livros'
+  const addBookToMyList = (book) => {
+    setBooks(books.filter(b => b.title !== book.title));
+    setMyBooks([...myBooks, book]);
+  };
+
+  // Função para remover livro de 'Meus Livros'
+  const removeBookFromMyList = (book) => {
+    setMyBooks(myBooks.filter(b => b.title !== book.title));
+    setBooks([...books, book]);
+  };
+
   return (
     <div className="app">
       <Profile />
-      <BooksList />
-      <MyBooks />
+      <BooksList books={books} onAddBook={addBookToMyList} />
+      <MyBooks myBooks={myBooks} onRemoveBook={removeBookFromMyList} />
     </div>
   );
 }
