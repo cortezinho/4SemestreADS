@@ -12,6 +12,9 @@ function Profile() {
         <h3>João Silva</h3>
         <p>ID: 123456</p>
         <p>Membro desde<br/>15 de Março de 2020</p>
+        <p>Membro desde<br/>15 de Março de 2020</p>
+        <p>Membro desde<br/>15 de Março de 2020</p>
+        <p>Membro desde<br/>15 de Março de 2020</p>
       </div>
       <button className="logout-btn">Sair</button>
     </div>
