@@ -1,7 +1,8 @@
 /* ---- RESET E FULL SCREEN ---- */
-html, body, #root {
+html, body, #root, .app-wrapper, .container.start, .app-container {
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -10,7 +11,7 @@ html, body, #root {
 
 /* ---- FONT PIXELIZADA EM TODO O SITE ---- */
 body, html, #root, .app-wrapper, * {
-  font-family: 'Press Start 2P', monospace; /* fonte retrô/pixelizada */
+  font-family: 'Press Start 2P', monospace;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
@@ -22,11 +23,11 @@ body, html, #root, .app-wrapper, * {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  width: 100%;
   position: relative;
   overflow: hidden;
   text-align: center;
+  background-size: cover;
+  background-position: center;
 }
 
 /* ---- TELA DE INÍCIO ---- */
@@ -34,43 +35,52 @@ body, html, #root, .app-wrapper, * {
   text-align: center;
   cursor: pointer;
   position: relative;
-  top: -100px ;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-/* DESCUBRA SEU CURSO*/
+/* DESCUBRA SEU CURSO */
 .title {
-  font-size: 7rem;
-  line-height: 1.5;
-  margin-bottom: 40px;
+  font-size: 5rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
   color: black;
+  text-shadow: 
+    -2px -2px 0 white, 
+    2px -2px 0 white, 
+    -2px 2px 0 white, 
+    2px 2px 0 white,
+    -4px 4px 0px rgba(0,0,0,0.5);
+  z-index: 10;
 }
 
 .word {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: slideUp 0.6s forwards;
+  opacity: 1;
+  transform: translateY(0);
+  animation: none;
 }
-
-.word.delay1 { animation-delay: 0.3s; color: black; }
-.word.delay2 { animation-delay: 0.6s; color: black;}
-.word.delay3 { animation-delay: 0.9s; color: black;}
 
 /* PRESS START */
 .press {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-top: 25px;
-  opacity: 0;
+  color: yellow;
+  text-shadow: 
+    -1px -1px 0 black, 
+    1px -1px 0 black, 
+    -1px 1px 0 black, 
+    1px 1px 0 black;
   animation: blink 1.2s infinite;
   animation-delay: 2s;
-  color: yellow;
-}
-
-@keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  z-index: 10;
 }
 
 @keyframes blink {
@@ -82,81 +92,68 @@ body, html, #root, .app-wrapper, * {
 img {
   position: absolute;
   user-select: none;
+  z-index: 5;
 }
 
 .bulbasaur {
-  bottom: 10%;
-  left: 5%;
-  width: 80px;
+  bottom: 310px;
+  left: 16%;
+  width: 220px;
 }
 
 .charmander {
-  bottom: 10%;
-  right: 5%;
-  width: 80px;
+  bottom: 25px;
+  left: 40%;
+  width: 150px;
 }
 
 .pikachu {
-  bottom: 15%;
-  left: 45%;
-  width: 100px;
+  bottom: 10px;
+  left: 60%;
+  width: 170px;
 }
 
 .squirtle {
-  bottom: 5%;
-  right: 15%;
-  width: 90px;
-}
-
-.zubats {
-  position: absolute;
-  top: 5%;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
-.zubat {
-  width: 60px;
-  animation: float 3s ease-in-out infinite alternate;
-}
-
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(20px); }
+  bottom: -10px;
+  left: 10%;
+  width: 450px;
 }
 
 .flip-right {
   transform: scaleX(-1);
 }
 
-/* ---- GAME SCREEN (INTRO E QUIZ) ---- */
+/* ---- TELA DO QUIZ ---- */
 .app-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 50px;
 }
 
-/* ---- DIALOGUE BOX ---- */
-.dialogue-box {
-  background: rgba(0, 0, 0, 0.8);
-  border: 3px solid white;
-  border-radius: 10px;
-  padding: 20px;
-  font-size: 1rem;
-  line-height: 1.5;
+/* Pergunta e botões */
+.question-container {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
   color: white;
-  animation: fadeIn 0.5s ease;
-  top: 1000px;
+  text-shadow: 2px 2px 4px #000;
 }
 
 .dialogue-choices {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -176,52 +173,6 @@ img {
   transform: scale(1.1);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-/* ---- RESULT SCREEN ---- */
-.result-screen {
-  text-align: center;
-  color: white;
-  padding: 20px;
-}
-
-.result-content h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.result-content p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-}
-
-.winner-course {
-  font-size: 1.4rem;
-  margin: 20px 0;
-  color: #ffcc00;
-}
-
-.restart-button {
-  margin-top: 25px;
-  padding: 12px 25px;
-  background: #ff3333;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.restart-button:hover {
-  background: #ff6666;
-  transform: scale(1.05);
-}
-
 /* ---- RESPONSIVIDADE ---- */
 @media (max-width: 1024px) {
   .title { font-size: 3rem; }
@@ -234,7 +185,7 @@ img {
   .press { font-size: 1.1rem; }
   .dialogue-box { font-size: 0.9rem; padding: 15px; }
   .dialogue-choices button { font-size: 0.7rem; padding: 8px 16px; }
-  .bulbasaur, .charmander, .squirtle, .pikachu, .zubat { width: 60px; }
+  .bulbasaur, .charmander, .squirtle, .pikachu { width: 60px; }
 }
 
 @media (max-width: 480px) {
@@ -243,7 +194,5 @@ img {
   .dialogue-box { font-size: 0.8rem; padding: 12px; }
   .dialogue-choices { flex-direction: column; gap: 10px; }
   .dialogue-choices button { width: 100%; font-size: 0.7rem; padding: 10px; }
-  .result-content h2 { font-size: 1.4rem; }
-  .winner-course { font-size: 1rem; }
-  .bulbasaur, .charmander, .squirtle, .pikachu, .zubat { width: 45px; }
+  .bulbasaur, .charmander, .squirtle, .pikachu { width: 45px; }
 }

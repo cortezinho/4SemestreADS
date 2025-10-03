@@ -1,40 +1,23 @@
-import React from "react";
-import StartScreen from "./components/StartScreens";
-import GameScreen from "./components/GameScreens";
-import ResultScreen from "./components/ResultScreens";
-import BackgroundWrapper from "./components/BackgroundWrapper";
-
-import { useGameController } from "./hooks/useGameController";
-import "./styles/App.css";
+import React, { useState } from 'react';
+import StartScreen from './components/StartScreen';
+import QuizScreen from './components/QuizScreens';
+import './styles/App.css';
 
 function App() {
-  const {
-    gameState,
-    setGameState,
-    backgroundImg,
-    currentDialogue,
-    scores,
-    handleChoice,
-    handleRestart,
-  } = useGameController();
+  const [gameState, setGameState] = useState('start');
+
+  const handleStart = () => {
+    setGameState('quiz');
+  };
 
   return (
-    <BackgroundWrapper backgroundImg={backgroundImg}>
-      {gameState === "start" && (
-        <StartScreen onStart={() => setGameState("intro")} />
+    <div className="app-wrapper">
+      {gameState === 'start' ? (
+        <StartScreen onStart={handleStart} />
+      ) : (
+        <QuizScreen />
       )}
-
-      {(gameState === "intro" || gameState === "quiz") && (
-        <GameScreen
-          currentDialogue={currentDialogue}
-          handleChoice={handleChoice}
-        />
-      )}
-
-      {gameState === "result" && (
-        <ResultScreen scores={scores} onRestart={handleRestart} />
-      )}
-    </BackgroundWrapper>
+    </div>
   );
 }
 
