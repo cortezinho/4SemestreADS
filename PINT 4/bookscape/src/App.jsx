@@ -1,6 +1,6 @@
 // ...outros imports
 import React, { useState } from 'react';
-import './App.css';
+import './styles/main.css';
 import Profile from './components/Profile';
 import BooksList from './components/BookList';
 import MyBooks from './components/MyBooks';
