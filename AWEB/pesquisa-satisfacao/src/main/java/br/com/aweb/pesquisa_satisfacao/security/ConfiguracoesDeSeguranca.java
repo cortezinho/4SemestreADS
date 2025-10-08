@@ -14,8 +14,8 @@ public class ConfiguracoesDeSeguranca {
 
     @Bean
     public UserDetailsService dadosUsuario(){
-        UserDetails usuario1 = User.builder().username("gabriel@email.com").password("gabriel123").build();
-        UserDetails usuario2 = User.builder().username("cortez@email.com").password("cortez123").build();
+        UserDetails usuario1 = User.builder().username("gabriel@email.com").password("{noop}gabriel123").build();
+        UserDetails usuario2 = User.builder().username("cortez@email.com").password("{noop}cortez123").build();
 
         return new InMemoryUserDetailsManager(usuario1, usuario2);
     }  
