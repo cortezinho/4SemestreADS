@@ -1,4 +1,6 @@
+// src/components/QuizScreen.jsx
 import React, { useState } from 'react';
+import DialogueBox from './DialogueBox'; // Importa o novo componente
 import backgrounds from '../assets/backgrounds/quiz-bg.png';
 import quizData from '../data/quizData';
 
@@ -15,7 +17,6 @@ function QuizScreen() {
       setMecatronicaScore(prev => prev + currentQuestion.scores.mecatronica);
     }
     
-    // Passa para a próxima pergunta ou finaliza o quiz
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
@@ -33,11 +34,17 @@ function QuizScreen() {
       resultText = 'Você se encaixa bem nos dois cursos!';
     }
     return (
-      <div className="quiz-result">
+      <DialogueBox>
+        <p>Parabéns! O resultado é:</p>
         <h2>{resultText}</h2>
-      </div>
+      </DialogueBox>
     );
   };
+  
+  const choices = [
+    { text: 'Sim', value: 'yes' },
+    { text: 'Não', value: 'no' },
+  ];
 
   return (
     <div
@@ -47,13 +54,9 @@ function QuizScreen() {
       {quizFinished ? (
         renderResult()
       ) : (
-        <div className="question-container">
-          <p className="question-text">{quizData[currentQuestionIndex].question}</p>
-          <div className="dialogue-choices">
-            <button onClick={() => handleAnswer('yes')}>Sim</button>
-            <button onClick={() => handleAnswer('no')}>Não</button>
-          </div>
-        </div>
+        <DialogueBox choices={choices} onChoice={handleAnswer}>
+          <p>{quizData[currentQuestionIndex].question}</p>
+        </DialogueBox>
       )}
     </div>
   );

@@ -52,12 +52,6 @@ body, html, #root, .app-wrapper, * {
   line-height: 1.2;
   margin-bottom: 20px;
   color: black;
-  text-shadow: 
-    -2px -2px 0 white, 
-    2px -2px 0 white, 
-    -2px 2px 0 white, 
-    2px 2px 0 white,
-    -4px 4px 0px rgba(0,0,0,0.5);
   z-index: 10;
 }
 
@@ -66,6 +60,7 @@ body, html, #root, .app-wrapper, * {
   opacity: 1;
   transform: translateY(0);
   animation: none;
+  color: black;
 }
 
 /* PRESS START */
@@ -78,7 +73,7 @@ body, html, #root, .app-wrapper, * {
     1px -1px 0 black, 
     -1px 1px 0 black, 
     1px 1px 0 black;
-  animation: blink 1.2s infinite;
+  animation: blink 3s infinite;
   animation-delay: 2s;
   z-index: 10;
 }
@@ -96,9 +91,9 @@ img {
 }
 
 .bulbasaur {
-  bottom: 310px;
-  left: 16%;
-  width: 220px;
+  bottom: 25px;
+  left: 20%;
+  width: 150px;
 }
 
 .charmander {
@@ -114,9 +109,9 @@ img {
 }
 
 .squirtle {
-  bottom: -10px;
-  left: 10%;
-  width: 450px;
+  bottom: 25px;
+  right: 20%;
+  width: 150px;
 }
 
 .flip-right {
@@ -124,15 +119,66 @@ img {
 }
 
 /* ---- TELA DO QUIZ ---- */
+/* ---- TELA DO QUIZ: Ajusta o posicionamento do balão (app-container) ---- */
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Posiciona o balão na parte inferior */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding-bottom: 50px;
+  padding-bottom: 0; /* Remove o padding inferior */
+}
+
+/* ---- Estilo do Balão de Diálogo (DialogueBox) ---- */
+.dialogue-box {
+  /* Posicionamento fixo na parte inferior */
+  position: absolute;
+  width: 50%;
+  bottom: 100px;
+  left: 400px;
+  max-width: none;
+  font-family: 'Press Start 2P', monospace;
+  
+  /* Estilo visual conforme a imagem do Professor Carvalho */
+  background-color: white;
+  color: black; /* Texto dentro do balão é preto */
+  border-radius: 0; /* Balão retangular */
+  text-align: left; /* Texto começa da esquerda */
+}
+
+.dialogue-content p, .dialogue-content h2 {
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  color: black;
+  text-shadow: none; /* Remove a sombra do texto do quiz anterior */
+}
+
+/* Ajusta as escolhas para ficarem dentro do balão */
+.dialogue-choices {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start; /* Alinha botões à esquerda (opcional: ou 'center') */
+  font-family: 'Press Start 2P', monospace;
+}
+
+.dialogue-choices button {
+  background: #f0f0f0;
+  border: 2px solid #3c3c3c;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-size: 1rem;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #a4a4a4;
+  transition: background-color 0.2s;
+}
+
+.dialogue-choices button:hover {
+  background-color: #ddd;
 }
 
 /* Pergunta e botões */
