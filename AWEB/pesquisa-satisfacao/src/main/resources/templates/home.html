@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Satisfação - Início</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="body-centered">
+
+    <div class="home-container">
+        <h1>Pesquisa de Satisfação</h1>
+        <p>Bem-vindo ao sistema. Escolha uma opção para continuar.</p>
+        <div class="home-actions">
+            <button id="btn-nova-avaliacao" class="btn-home">Nova Avaliação</button>
+            <a th:href="@{/setores}" class="btn-home">Gerenciar Setores</a>
+        </div>
+    </div>
+
+    <div id="sector-modal" class="modal-overlay modal-hidden">
+        <div class="modal-box">
+            <h2>Selecione o Setor</h2>
+            <div class="sector-select-container">
+                <select id="sector-select" class="sector-select">
+                    <option value="">-- Escolha um setor --</option>
+                    <option th:each="setor : ${setores}" th:value="${setor.id}" th:text="${setor.nome}"></option>
+                </select>
+                <p id="sector-error" style="color: red; display: none;">Por favor, selecione um setor.</p>
+                <p th:if="${setores.isEmpty()}">Nenhum setor cadastrado para avaliação.</p>
+            </div>
+            <div class="form-actions">
+                <button id="btn-cancelar-modal" class="btn-secondary">Cancelar</button>
+                <button id="btn-confirmar-modal" class="btn-primary" th:disabled="${setores.isEmpty()}">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Satisfação</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="body-centered">
+   
+    <div class="satisfaction-form">
+        <h1 th:text="${nomeSetor}"></h1>
+        <h2>O que você achou do nosso serviço?</h2>
+        <form th:action="@{/avaliar}" th:object="${avaliacao}" method="post">
+            <input type="hidden" th:field="*{setor.id}" />
+            <div class="satisfaction-level">
+                <div class="option">
+                    <label>
+                        <input type="radio" th:field="*{nivel}" value="1" required>
+                        <img th:src="@{/img/1-pessimo.png}" alt="Péssimo">
+                        <div class="legend">Péssimo</div>
+                    </label>
+                </div>
+                <div class="option">
+                    <label>
+                        <input type="radio" th:field="*{nivel}" value="2">
+                        <img th:src="@{/img/2-ruim.png}" alt="Ruim">
+                        <div class="legend">Ruim</div>
+                    </label>
+                </div>
+                <div class="option">
+                    <label>
+                        <input type="radio" th:field="*{nivel}" value="3">
+                        <img th:src="@{/img/3-regular.png}" alt="Regular">
+                        <div class="legend">Regular</div>
+                    </label>
+                </div>
+                <div class="option">
+                    <label>
+                        <input type="radio" th:field="*{nivel}" value="4">
+                        <img th:src="@{/img/4-bom.png}" alt="Bom">
+                        <div class="legend">Bom</div>
+                    </label>
+                </div>
+                <div class="option">
+                    <label>
+                        <input type="radio" th:field="*{nivel}" value="5">
+                        <img th:src="@{/img/5-excelente.png}" alt="Excelente">
+                        <div class="legend">Excelente</div>
+                    </label>
+                </div>
+            </div>
+            <div class="comment-section">
+                <label for="comentario">Deixe seu comentário (opcional):</label>
+                <textarea id="comentario" th:field="*{comentario}" rows="4" maxlength="250" placeholder="Digite seu comentário aqui..."></textarea>
+            </div>
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+    </div>
+
+    <div th:if="${message}" id="modal-container" class="modal-overlay">
+        <div class="modal-box">
+            <h2>Obrigado!</h2>
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <script th:src="@{/js/script.js}" defer></script>
+
+</body>
+</html>
