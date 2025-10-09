@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <nav class="navbar" th:fragment="navbar-geral">
+        <div class="navbar-brand">
+            <a th:href="@{/}">Sistema de Avaliação</a>
+        </div>
+        <form class="navbar-form" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn-link">SAIR</button>
+        </form>
+    </nav>
+
+</body>
+
+</html>
