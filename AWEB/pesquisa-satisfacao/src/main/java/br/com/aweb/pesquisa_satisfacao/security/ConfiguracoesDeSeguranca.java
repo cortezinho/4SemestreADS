@@ -24,7 +24,7 @@ public class ConfiguracoesDeSeguranca {
     }
 
     @Bean
-    public SecurityFilterChain filtrosSeguranca(HttpSecurity http) throws Execption {
+    public SecurityFilterChain filtrosSeguranca(HttpSecurity http) throws Exception {
         return http
                 // função lambda
                 .authorizeHttpRequests(req -> {
