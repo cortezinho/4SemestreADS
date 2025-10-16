@@ -15,10 +15,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Garante que o body e o root usem a altura total da tela */
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: #f0f0f0;
@@ -28,38 +28,53 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+  /* Padding reduzido para dar mais espaço à library-screen */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* Altura total do viewport menos o padding de 1rem em cima e 1rem embaixo */
+  min-height: calc(100vh - 2rem);
 }
 
 /* --- Layout Principal --- */
 .library-screen {
   display: flex;
+  flex-grow: 1;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
-  min-height: 80vh;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Propriedade para garantir que, se necessário, o conteúdo do body force o scroll */
+  max-height: 100%;
+  overflow: hidden;
+  /* Garante que as listas internas não extravasem o container branco */
 }
 
 /* --- Seções (Disponíveis e Meus Livros) --- */
 .section {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* Ocupa a altura total do .library-screen */
+  box-sizing: border-box;
 }
 
 .available-books-section {
-  flex: 3; /* Ocupa mais espaço */
+  flex: 3;
   border-right: 1px solid #ddd;
 }
 
 .my-books-section {
-  flex: 1.5; /* Ocupa menos espaço */
+  flex: 1.5;
   background-color: #f8f8f8;
 }
 
 .section-title {
   font-size: 1.5rem;
   font-weight: 700;
+  margin-top: 0;
   margin-bottom: 20px;
   text-align: center;
   color: #333;
@@ -106,13 +121,43 @@ body {
   margin-right: 10px;
 }
 
+/* --- Containers de Scroll --- */
+.available-books-scroll-container,
+.my-books-scroll-container {
+  flex-grow: 1;
+  /* Ocupa o espaço vertical restante na seção */
+  overflow-y: auto;
+  /* Adiciona a barra de rolagem vertical se necessário */
+  padding-right: 10px;
+  /* Espaço para a barra de rolagem não colidir com a borda */
+}
+
+/* --- Listas de Livros --- */
+.available-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding-bottom: 10px;
+  /* Adiciona espaço no final da lista para o scroll */
+}
+
+.my-books-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 10px;
+  /* Adiciona espaço no final da lista para o scroll */
+}
+
+
 /* --- Book Card (Livro Individual) --- */
 .book-card-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
-  width: 120px; /* Tamanho fixo para o card */
+  width: 120px;
   cursor: pointer;
   text-align: center;
 }
@@ -120,7 +165,7 @@ body {
 .book-cover {
   width: 80px;
   height: 120px;
-  background-color: #000; /* Preto sólido como na imagem */
+  background-color: #000;
   border-radius: 4px;
   margin-bottom: 8px;
 }
@@ -139,53 +184,24 @@ body {
   width: 100%;
 }
 
-.action-icon {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #000;
-  border-radius: 50%;
-  margin-top: 4px;
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  color: #000;
-}
-
 .borrow-icon {
-    width: 20px;
-    height: 10px;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    margin-top: 4px;
-    position: relative;
+  width: 20px;
+  height: 10px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-top: 4px;
+  position: relative;
 }
 
 .borrow-icon::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #000;
-    transform: translateY(-50%);
-}
-
-
-/* --- Listas de Livros --- */
-.available-books-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 20px;
-  justify-content: center;
-}
-
-.my-books-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  transform: translateY(-50%);
 }
 
 .my-books-card-container {
@@ -195,7 +211,7 @@ body {
   border: 1px solid #e0e0e0;
   background-color: #fff;
   border-radius: 4px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .my-books-card-container .book-cover {
@@ -220,7 +236,7 @@ body {
 }
 
 .my-books-card-container .borrow-icon {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 /* --- Modal Styles --- */
@@ -290,19 +306,19 @@ body {
 }
 
 .date-input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 15px;
 }
 
 .date-input-group label {
-    font-weight: 700;
-    color: #333;
+  font-weight: 700;
+  color: #333;
 }
 
 .date-input-group input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }

@@ -21,6 +21,12 @@ const initialBooksData = [
   { id: 13, title: 'Título 13', author: 'Autor M', returnDate: '00/00/00' },
   { id: 14, title: 'Título 14', author: 'Autor N', returnDate: '00/00/00' },
   { id: 15, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 16, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 17, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 18, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 19, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+
+
 ];
 
 // Função utilitária para formatar a data para o input date (AAAA-MM-DD)
