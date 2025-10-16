@@ -29,26 +29,29 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
-  /* Padding reduzido para dar mais espaço à library-screen */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  /* Altura total do viewport menos o padding de 1rem em cima e 1rem embaixo */
-  min-height: calc(100vh - 2rem);
+  /* min-height não é mais estritamente necessário, mas mantemos para estrutura */
 }
 
 /* --- Layout Principal --- */
 .library-screen {
   display: flex;
-  flex-grow: 1;
+  /* Altura Fixa: Calculada para preencher o espaço restante do viewport.
+     100vh (altura da tela) - 2rem (padding do #root) - 20px (margem do .header) = Altura máxima utilizável */
+  max-height: calc(100vh - 2rem - 20px);
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Propriedade para garantir que, se necessário, o conteúdo do body force o scroll */
-  max-height: 100%;
-  overflow: hidden;
-  /* Garante que as listas internas não extravasem o container branco */
+
+  /* ADICIONA SCROLLBAR AQUI */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Remove flex-grow para usar a altura máxima calculada */
+  /* flex-grow: 1; */
 }
 
 /* --- Seções (Disponíveis e Meus Livros) --- */
@@ -56,8 +59,9 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  /* A altura da section agora precisa se expandir para acomodar o conteúdo interno
+     e usar a rolagem do pai (.library-screen) */
   height: 100%;
-  /* Ocupa a altura total do .library-screen */
   box-sizing: border-box;
 }
 
@@ -85,6 +89,7 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  /* Mantido para calcular o max-height acima */
 }
 
 .logo {
@@ -121,16 +126,15 @@ body {
   margin-right: 10px;
 }
 
-/* --- Containers de Scroll --- */
+/* --- Containers de Scroll (REMOVIDA a rolagem interna) --- */
 .available-books-scroll-container,
 .my-books-scroll-container {
-  flex-grow: 1;
-  /* Ocupa o espaço vertical restante na seção */
-  overflow-y: auto;
-  /* Adiciona a barra de rolagem vertical se necessário */
+  /* REMOVIDO: flex-grow: 1; */
+  /* REMOVIDO: overflow-y: auto; */
+  /* Agora o conteúdo cresce naturalmente, e o scroll é feito no .library-screen */
   padding-right: 10px;
-  /* Espaço para a barra de rolagem não colidir com a borda */
 }
+
 
 /* --- Listas de Livros --- */
 .available-books-grid {
@@ -139,7 +143,6 @@ body {
   gap: 20px;
   justify-content: center;
   padding-bottom: 10px;
-  /* Adiciona espaço no final da lista para o scroll */
 }
 
 .my-books-list {
@@ -147,7 +150,6 @@ body {
   flex-direction: column;
   gap: 15px;
   padding-bottom: 10px;
-  /* Adiciona espaço no final da lista para o scroll */
 }
 
 

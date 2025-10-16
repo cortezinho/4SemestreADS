@@ -25,7 +25,12 @@ const initialBooksData = [
   { id: 17, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
   { id: 18, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
   { id: 19, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
-
+  { id: 20, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 21, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 22, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 23, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 24, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
+  { id: 25, title: 'Título 15', author: 'Autor O', returnDate: '00/00/00' },
 
 ];
 
