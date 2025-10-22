@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Setor</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar-geral}"></div>
+    <div class="admin-container">
+        <h1>Cadastrar Novo Setor</h1>
+        
+        <form class="admin-form" th:action="@{/setores/novo}" th:object="${setor}" method="post">
+            <div class="form-group">
+                <label for="nome">Nome do Setor:</label>
+                <input type="text" id="nome" th:field="*{nome}" placeholder="Ex: Atendimento, Financeiro...">
+                <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="error-message"></div>
+            </div>
+            
+            <div class="form-actions">
+                <a th:href="@{/setores}" class="btn-secondary">Cancelar</a>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

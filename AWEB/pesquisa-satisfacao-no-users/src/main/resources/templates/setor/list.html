@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Setores</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragments/navbar :: navbar-geral}"></div>
+    <div class="admin-container">
+        <div class="header-bar">
+            <h1>Setores Cadastrados</h1>
+            <div>
+                <a th:href="@{/}" class="btn-secondary">Voltar</a>
+                <a th:href="@{/setores/novo}" class="btn-primary">Novo Setor</a>
+            </div>
+
+        </div>
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <!-- <th>ID</th> -->
+                    <th>Nome do Setor</th>
+                    <th style="width: 150px;">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${setores.isEmpty()}">
+                    <td colspan="3">Nenhum setor cadastrado.</td>
+                </tr>
+                <tr th:each="setor : ${setores}">
+                    <!-- <td th:text="${setor.id}">1</td> -->
+                    <td th:text="${setor.nome}">Financeiro</td>
+                    <td>
+                        <button th:if="${!setor.avaliacao.isEmpty()}" class="btn-danger" disabled
+                            title="Setor com avaliações não pode ser excluído">
+                            Excluir
+                        </button>
+
+                        <a th:if="${setor.avaliacao.isEmpty()}" th:href="@{/setores/delete/{id}(id=${setor.id})}"
+                            class="btn-danger" title="Excluir Setor">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

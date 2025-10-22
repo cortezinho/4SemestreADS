@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="body-centered">
+
+    <div class="login-container">
+        <h1>Login</h1>
+
+        <form method="post" th:action="@{/login}">
+
+            <div class="alert alert-danger" th:if="${param.error != null}">
+                E-mail ou senha inválidos!
+            </div>
+
+            <div class="alert alert-success" th:if="${param.logout != null}">
+                Você saiu da aplicação.
+            </div>
+
+            <div class="form-group">
+                <label for="username">Email:</label>
+                <input id="username" name="username" type="email" placeholder="seuemail@exemplo.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input id="password" name="password" type="password" placeholder="Sua senha" required>
+            </div>
+
+            <button type="submit" class="btn-primary btn-full-width">
+                Entrar
+            </button>
+
+            <div class="form-group-checkbox">
+                <input id="remember-me" name="remember-me" type="checkbox">
+                <label for="remember-me">Lembrar de mim</label>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

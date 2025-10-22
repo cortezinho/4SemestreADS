@@ -1,0 +1,18 @@
+services:
+  # Serviço do Banco de Dados PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: pesquisa-db
+    environment:
+      - POSTGRES_USER=usuario
+      - POSTGRES_PASSWORD=senha123
+      - POSTGRES_DB=satisfacao
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+# Volume para persistir os dados do banco de dados
+volumes:
+  postgres_data:
