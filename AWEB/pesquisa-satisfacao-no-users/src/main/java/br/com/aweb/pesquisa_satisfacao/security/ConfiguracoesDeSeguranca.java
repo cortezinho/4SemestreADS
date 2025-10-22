@@ -32,6 +32,7 @@ public class ConfiguracoesDeSeguranca {
                 return http
                                 .authorizeHttpRequests(req -> {
                                         req.requestMatchers("/login", "/css/**", "/js/**", "/img/**").permitAll();
+                                        req.requestMatchers("/setores/**").hasRole("ADMIN");
                                         req.anyRequest().authenticated();
                                 })
                                 .formLogin(form -> form.loginPage("/login")
