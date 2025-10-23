@@ -13,6 +13,24 @@ services:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
+
+    # Serviço da Aplicação Spring Boot
+  app:
+    container_name: pesquisa-app
+    # Constrói a imagem a partir do Dockerfile na pasta atual (.)
+    build: .
+    # Garante que a aplicação só inicie DEPOIS que o banco de dados estiver de pé
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    # Fornece as variáveis de ambiente que o application.properties espera
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=usuario
+      - DB_PASSWORD=senha123
+    restart: unless-stopped
+
 # Volume para persistir os dados do banco de dados
 volumes:
   postgres_data:
