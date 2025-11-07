@@ -19,7 +19,7 @@ public class MedicoController {
     @Autowired
     private MedicoRepository medicoRepository;
 
-    @PostMapping
+    @PostMapping("/cadastro")
     @Transactional
     public void cadastrar(@RequestBody DadosCadastroMedico dados){
         medicoRepository.save(new Medico(dados));
