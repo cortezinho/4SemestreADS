@@ -11,12 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.medpro.medpro.model.dto.DadosAtualizacaoMedico;
 import com.medpro.medpro.model.dto.DadosCadastroMedico;
 import com.medpro.medpro.model.dto.DadosListagemMedico;
 import com.medpro.medpro.model.entity.Medico;
 import com.medpro.medpro.repository.MedicoRepository;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @RestController
@@ -37,4 +43,10 @@ public class MedicoController {
         return medicoRepository.findAll(paginacao).map(DadosListagemMedico::new);
     }
     
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+        var medico = medicoRepository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
+    }
 }

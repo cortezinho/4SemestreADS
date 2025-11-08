@@ -1,6 +1,7 @@
 package com.medpro.medpro.model.entity;
 
 import com.medpro.medpro.enums.Especialidade;
+import com.medpro.medpro.model.dto.DadosAtualizacaoMedico;
 import com.medpro.medpro.model.dto.DadosCadastroMedico;
 
 import jakarta.persistence.Embedded;
@@ -50,6 +51,26 @@ public class Medico {
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoMedico dados){
+        if(dados.nome() != null){
+            if(dados.nome().isBlank()){
+                throw new IllegalArgumentException("Nome não pode estar em branco!");
+            }
+            this.nome = dados.nome();
+        }
+
+        if(dados.telefone() != null){
+            if(dados.telefone().isBlank()){
+                throw new IllegalArgumentException("Telefone não pode estar em branco!");
+            }
+            this.telefone = dados.telefone();
+        }
+
+        if(dados.endereco() != null){
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
     }
 
 }
