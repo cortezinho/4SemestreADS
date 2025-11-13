@@ -16,7 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.medpro.medpro.model.dto.DadosAtualizacaoPaciente;
 import com.medpro.medpro.model.dto.DadosCadastroPaciente;
-import com.medpro.medpro.model.dto.DadosDetalhamentoMedico;
 import com.medpro.medpro.model.dto.DadosDetalhamentoPaciente;
 import com.medpro.medpro.model.dto.DadosListagemPaciente;
 import com.medpro.medpro.model.entity.Paciente;
@@ -43,7 +42,7 @@ public class PacienteController {
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemPaciente>> listar(Pageable paginacao) {
-        var page = pacienteRepository.findAll(paginacao).map(DadosListagemPaciente::new);
+        var page = pacienteRepository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
         return ResponseEntity.ok(page);
     }
 
