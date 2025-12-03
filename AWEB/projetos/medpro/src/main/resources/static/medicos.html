@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Médicos - MedPro</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <script src="js/medicos.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="agendamento.html" class="brand">MedPro</a>
+      <ul class="nav-links">
+        <li><a href="agendamento.html">Agendamentos</a></li>
+        <li><a href="medicos.html">Médicos</a></li>
+        <li><a href="pacientes.html">Pacientes</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <div class="layout-colunas">
+        <div class="card form-container">
+          <h2>Cadastrar Médico</h2>
+          <form id="formMedico">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input
+                type="text"
+                id="nome"
+                required
+                placeholder="Nome completo"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="exemplo@med.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+              <input
+                type="text"
+                id="telefone"
+                required
+                placeholder="(XX) XXXXX-XXXX"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="crm">CRM:</label>
+              <input
+                type="text"
+                id="crm"
+                required
+                pattern="\d{4,6}"
+                placeholder="4 a 6 dígitos"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="especialidade">Especialidade:</label>
+              <select id="especialidade" required>
+                <option value="">Selecione...</option>
+                <option value="ORTOPEDIA">Ortopedia</option>
+                <option value="CARDIOLOGIA">Cardiologia</option>
+                <option value="GINECOLOGIA">Ginecologia</option>
+                <option value="DERMATOLOGIA">Dermatologia</option>
+              </select>
+            </div>
+
+            <h3
+              style="
+                margin-top: 20px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 5px;
+              "
+            >
+              Endereço
+            </h3>
+
+            <div class="form-group">
+              <input
+                type="text"
+                id="logradouro"
+                placeholder="Logradouro"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input type="text" id="bairro" placeholder="Bairro" required />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="cep"
+                placeholder="CEP (8 dígitos)"
+                pattern="\d{8}"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input type="text" id="cidade" placeholder="Cidade" required />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="uf"
+                placeholder="UF"
+                maxlength="2"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input type="text" id="numero" placeholder="Número" />
+            </div>
+            <div class="form-group">
+              <input type="text" id="complemento" placeholder="Complemento" />
+            </div>
+
+            <button type="submit" class="btn-agendar">Cadastrar Médico</button>
+          </form>
+          <div id="result" class="result"></div>
+        </div>
+
+        <div class="lista-container">
+          <h2>Médicos Cadastrados</h2>
+          <table id="tabelaMedicos">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>CRM</th>
+                <th>Especialidade</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

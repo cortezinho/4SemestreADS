@@ -1,0 +1,279 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1755305216668
+  modified: 1755305216668
+  description: ""
+collection:
+  - name: medpro
+    meta:
+      id: fld_6f73a0d4bbc348dd8630848afa8bf5f8
+      created: 1763667130159
+      modified: 1763667130159
+      sortKey: -1763667130159
+      description: ""
+    children:
+      - url: localhost:8080/medicos
+        name: listar medicos
+        meta:
+          id: req_9bf64a0f6b684978961ac09a963cc416
+          created: 1763667134968
+          modified: 1763667166220
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134968
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/medicos/cadastro
+        name: cadastrar medicos
+        meta:
+          id: req_8de46670468a4875b3d8a450c2524ea7
+          created: 1763667175200
+          modified: 1763930765935
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134868
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "nome": "1",
+                "email": "1@email.com",
+                "telefone": "11111111",
+                "crm": "111111",
+                "especialidade": "CARDIOLOGIA",
+                "endereco":{
+                  "logradouro": "Rua candido padim",
+                  "bairro": "bairro",
+                  "cep": "12345678",
+                  "cidade": "sao carlos",
+                  "uf": "sp",
+                  "numero": "19",
+            			"complemento": "minha casa"
+            		}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/medicos/1
+        name: deletar medicos
+        meta:
+          id: req_4ad228266b76405a8271c43e5efe401c
+          created: 1763667260250
+          modified: 1763667330969
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134768
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/pacientes
+        name: listar pacientes
+        meta:
+          id: req_510624bc9b1942bcb49361f3c65818a4
+          created: 1763667342574
+          modified: 1763667372696
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134668
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/pacientes/cadastro
+        name: cadastrar pacientes
+        meta:
+          id: req_cf39170a59f0463faf6ae3bc91505477
+          created: 1763667383263
+          modified: 1763930735087
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134568
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "nome": "1",
+                "email": "1@email.com",
+                "telefone": "11111111",
+                "cpf": "11111111111",
+                "endereco":{
+            			"logradouro": "Rua candido padim",
+                  "bairro": "bairro",
+                  "cep": "12345678",
+                  "cidade": "sao carlos",
+                  "uf": "sp",
+                  "numero": "19",
+            			"complemento": "minha casa"
+            		}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/pacientes/1
+        name: deletar pacientes
+        meta:
+          id: req_e918a2716ad14b6ea37b51b9215d6e0b
+          created: 1763667449065
+          modified: 1763667474370
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134468
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/consultas
+        name: agendar consulta
+        meta:
+          id: req_32a4ef5d24a641a5a888ebd9576d00cf
+          created: 1763668045737
+          modified: 1763930814394
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134368
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "idPaciente": 2,
+                "idMedico": 2,
+                "data": "2025-12-20T17:00:00"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/consultas
+        name: listar consultas
+        meta:
+          id: req_985abefca71742c8b950590dfea05cdd
+          created: 1763668096896
+          modified: 1763668107401
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134418
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/consultas
+        name: delatar consulta
+        meta:
+          id: req_d78f383b2151494f84909ae1e887cbe7
+          created: 1763669193771
+          modified: 1763930829051
+          isPrivate: false
+          description: ""
+          sortKey: -1763667134268
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "idConsulta": 2,
+                "motivo": "PACIENTE_DESISTIU"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1763666767562
+    modified: 1763666767562
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1763666767548
+    modified: 1763666767548
+    isPrivate: false

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciamento de Consultas - MedPro</title>
+
+  <link rel="stylesheet" href="css/estilos.css" />
+  <script src="js/agendamento.js" defer></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <a href="agendamento.html" class="brand">MedPro</a>
+    <ul class="nav-links">
+      <li><a href="agendamento.html">Agendamentos</a></li>
+      <li><a href="medicos.html">Médicos</a></li>
+      <li><a href="pacientes.html">Pacientes</a></li>
+    </ul>
+  </nav>
+
+  <div class="main-content">
+    <div class="layout-colunas">
+      <div class="form-container">
+        <div class="card" style="margin-bottom: 20px; border-left: 5px solid #007bff;">
+          <h3>Horário de Funcionamento</h3>
+          <table style="margin-top: 5px; margin-bottom: 15px;">
+            <tr>
+              <td style="padding: 5px 0; font-weight: bold;">Abertura:</td>
+              <td style="padding: 5px 0;">07:00</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 0; font-weight: bold;">Fechamento:</td>
+              <td style="padding: 5px 0;">19:00</td>
+            </tr>
+          </table>
+          <div
+            style="background-color: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; font-size: 0.9rem; border: 1px solid #ffeeba;">
+            <strong>⚠️ Atenção:</strong> O último horário para agendamento é às <strong>18:00</strong>.
+            <br><br>
+            Como as consultas têm duração fixa de 1 hora, agendamentos após as 18:00 ultrapassariam o horário de
+            fechamento da clínica.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <div class="card" style="margin-bottom: 20px">
+          <h2>Agendar Consulta</h2>
+          <form id="formAgendamento">
+            <div class="form-group">
+              <label for="selectPaciente">Paciente:</label>
+              <select id="selectPaciente" required>
+                <option value="">Carregando...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="selectMedico">Médico (Opcional):</label>
+              <select id="selectMedico">
+                <option value="">Carregando...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="data">Data e Hora:</label>
+              <input type="datetime-local" id="data" required />
+            </div>
+
+            <button type="submit" class="btn-agendar">
+              Agendar Consulta
+            </button>
+          </form>
+          <div id="resultAgendamento" class="result"></div>
+        </div>
+
+        <div class="card">
+          <h3>Cancelar Consulta</h3>
+          <form id="formCancelamento">
+            <div class="form-group">
+              <label for="idConsulta">ID da Consulta:</label>
+              <input type="number" id="idConsulta" required placeholder="Verifique na tabela ao lado" />
+            </div>
+
+            <div class="form-group">
+              <label for="motivo">Motivo do Cancelamento:</label>
+              <select id="motivo" required>
+                <option value="">Selecione...</option>
+                <option value="PACIENTE_DESISTIU">Paciente Desistiu</option>
+                <option value="MEDICO_CANCELOU">Médico Cancelou</option>
+                <option value="OUTROS">Outros</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-cancelar">
+              Cancelar Consulta
+            </button>
+          </form>
+          <div id="resultCancelamento" class="result"></div>
+        </div>
+      </div>
+
+      <div class="lista-container">
+        <h2>Consultas Agendadas</h2>
+        <table id="tabelaConsultas">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Médico</th>
+              <th>Paciente</th>
+              <th>Data</th>
+              <th>Status / Motivo</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

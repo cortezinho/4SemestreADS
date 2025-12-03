@@ -1,0 +1,219 @@
+/* --- RESET E GERAL --- */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  background-color: #007bff;
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+.navbar .brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.nav-links a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* --- LAYOUTS --- */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Layout de Colunas (Esquerda: Forms, Direita: Lista) */
+.layout-colunas {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1500px;
+}
+.form-container {
+  flex: 1;
+  min-width: 350px;
+}
+.lista-container {
+  flex: 2;
+  min-width: 400px;
+  overflow-x: auto;
+}
+
+/* --- COMPONENTES --- */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+h2 {
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 15px;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+h3 {
+  color: #444;
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+
+/* --- FORMULÁRIOS --- */
+.form-group {
+  margin-bottom: 15px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+/* --- BOTÕES --- */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  transition: background 0.3s;
+}
+.btn-agendar {
+  background-color: #28a745;
+}
+.btn-agendar:hover {
+  background-color: #218838;
+}
+.btn-cancelar {
+  background-color: #dc3545;
+}
+.btn-cancelar:hover {
+  background-color: #c82333;
+}
+.btn-excluir {
+  background-color: #dc3545;
+  padding: 6px 12px;
+  width: auto;
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+.btn-excluir:hover {
+  background-color: #bd2130;
+}
+
+/* --- TABELAS --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+thead {
+  background-color: #007bff;
+  color: white;
+}
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* --- RESULTADOS --- */
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  display: none;
+}
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Cor para consultas canceladas */
+.status-cancelado {
+  background-color: #ffe6e6 !important; /* Fundo vermelho claro */
+  color: #cc0000; /* Texto vermelho escuro */
+}
+
+.status-cancelado td {
+  text-decoration: line-through; /* Risca o texto (opcional) */
+}
+
+/* Exceção: Não riscar a coluna do motivo para ler melhor */
+.status-cancelado td:last-child {
+  text-decoration: none;
+  font-weight: bold;
+}
